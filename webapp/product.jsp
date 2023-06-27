@@ -66,8 +66,25 @@
         </div>
         <div class="col">
         </div>
+        <div class="col">
+        </div>
+            <div class="col">
+                <form class="d-flex" action="show" method="post">
+                    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="tensp" style="max-width: 200px;padding-right: 10px;">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
     </div>
 </div>
+<br>
+<center>
+    <a href="show" class="btn btn-primary">ALL</a>
+    <c:forEach items="${categoryList}" var="c">
+    <a href="category?Id=${c.id}" class="btn btn-info">${c.loaisp}</a>
+    </c:forEach>
+</center>
+<br>
+
     <form action="cart" method="get">
     <div class="container">
         <div class="d-flex flex-wrap">

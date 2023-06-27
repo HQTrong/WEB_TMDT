@@ -40,4 +40,8 @@ public class ProductService {
         List<Product> list = dao.getProductName(name);
         return !list.isEmpty() ? list : null;
     }
+    public List<Product> getProductByIdType(int idType) throws SQLException {
+        List<Product> list = dao.getProductByIdType(idType);
+        return !list.isEmpty() ? list : null;
+    }
 }

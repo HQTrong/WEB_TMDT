@@ -13,4 +13,12 @@ public class CategoryService {
         List<CategoryType> list = dao.getCategoryType();
         return !list.isEmpty() ? list : null;
     }
+    public  boolean insertProducTypet(String loaisp) throws  SQLException{
+        boolean result = dao.insertProductType(loaisp);
+        return result==true ?result: false;
+    }
+    public CategoryType getCategoryByName(String loaisp) throws SQLException {
+      CategoryType category= dao.getCategoryByName(loaisp);
+        return  category != null ? category : null;
+    }
 }

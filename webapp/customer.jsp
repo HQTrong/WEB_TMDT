@@ -38,11 +38,8 @@
     <table style="margin-top: 20px;">
         <tr>
             <th>ID</th>
-            <th>Họ & Tên</th>
             <th>Tên đăng nhập</th>
             <th>Mật khẩu</th>
-            <th>Điện thoại</th>
-            <th>Địa chỉ</th>
             <th>Email</th>
         </tr>
         <c:choose>
@@ -50,11 +47,8 @@
         <c:forEach items="${list}" var="sp" >
             <tr>
                 <td>${sp.id}</td>
-                <td>${sp.fullName}</td>
                 <td>${sp.user}</td>
                 <td>${sp.pass}</td>
-                <td>${sp.phone}</td>
-                <td>${sp.address}</td>
                 <td>${sp.email}</td>
             </tr>
         </c:forEach>

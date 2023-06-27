@@ -40,6 +40,7 @@
     <button style="background-color: blue;"><a href="customer"><b>Danh sách khách hàng</b></a></button>
     <button style="background-color: blue;"><a href="orderbuy"><b>Đơn hàng đã bán</b></a></button>
     <button style="background-color: blue;"><a href="complaint"><b>Góp ý của KH</b></a></button>
+    <button style="background-color: blue;"><a href="addtype"><b>Thêm loại SP</b></a></button>
     <table style="margin-top: 20px;">
         <tr>
             <th>ID sản phẩm</th>

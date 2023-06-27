@@ -224,5 +224,32 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
         }
         return list;
     }
-
+    public List<Product> getProductByIdType(int idType) throws SQLException {
+        List<Product> list = new ArrayList<>();
+        try {
+            Connection c = db.connectDB(); // connect
+            PreparedStatement preparedStatement = null;
+            String sql = " select * from sanpham where id_type =?; ";
+            preparedStatement = c.prepareStatement(sql);
+            preparedStatement.setInt(1, idType);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Product u = new Product();
+                u.setId(rs.getInt(1));
+                u.setTen(rs.getString(2));
+                u.setGia(rs.getInt(3));
+                u.setAnh(rs.getString(4));
+                u.setMota(rs.getString(5));
+                u.setIdType(rs.getInt(6));
+                list.add(u);
+            }
+            rs.close();
+            c.close();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            db.closeBD();
+        }
+        return list;
+    }
 }
