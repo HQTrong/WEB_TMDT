@@ -100,4 +100,25 @@ public class CartDAO {
         }
         return list;
     }
+    public boolean removeCart(int idSanPham) throws SQLException {
+        boolean is = false;
+        PreparedStatement preparedStatement = null;
+        try {
+            Connection c = db.connectDB();
+            String sql = "delete from  cart where id_sanpham=?;";
+            is = true;
+            preparedStatement = c.prepareStatement(sql);
+            preparedStatement.setInt(1, idSanPham);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.close();
+            c.close();
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            // bat buoc dong
+            db.closeBD();
+        }
+        return is;
+    }
 }

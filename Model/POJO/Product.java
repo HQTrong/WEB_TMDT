@@ -7,15 +7,17 @@ public class Product {
     private  String anh;
     private  String mota;
     private  int soLuong;
+    private  int idType;
 
 
-    public Product(int id, String ten, int gia, String anh, String mota, int soLuong) {
+    public Product(int id, String ten, int gia, String anh, String mota, int soLuong,int idType) {
         this.id = id;
         this.ten = ten;
         this.gia = gia;
         this.anh = anh;
         this.mota = mota;
         this.soLuong = soLuong;
+        this.idType=idType;
     }
 
     public Product(int id, String ten, int gia, String anh, int soLuong) {
@@ -24,6 +26,14 @@ public class Product {
         this.gia = gia;
         this.anh = anh;
         this.soLuong=soLuong;
+    }
+
+    public int getIdType() {
+        return idType;
+    }
+
+    public void setIdType(int idType) {
+        this.idType = idType;
     }
 
     public int getSoLuong() {

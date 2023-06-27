@@ -6,7 +6,7 @@ anh varchar(50),
 mota varchar(5000)
 );
 create table account (
-	id  serial,
+	id  serial primary KEY,
 	username varchar(20) primary key,
 	pass varchar(20),
 	phone varchar(10),
@@ -28,12 +28,24 @@ create table donhang(
 	thanhtien int,
 	FOREIGN KEY (username) REFERENCES account(username)
 );
-create table complaint(
+create table customer(
+	id serial primary key,
+	fullname varchar(50),
+	address varchar(500),
+	phone varchar(10),
+	id_cart int,
+	id_donhang int,
+	FOREIGN KEY (id_cart) REFERENCES cart(id_cart),
+    FOREIGN KEY (id_donhang) REFERENCES donhang(id_donhang)
+);
+create table comment(
 	id serial not null primary key,
 	username varchar(20),
 	pass varchar(20),
-	complaint varchar(2000)
+	comment varchar(2000),
+	FOREIGN KEY (username) REFERENCES account(username)
 );
+
 insert into accountadmin(username,pass) values ('admin','12345'),('hqtrong','12345');
 alter table cart add tensp varchar(50);
 insert into sanpham(id,tensp,giasp,anh,mota)
@@ -77,5 +89,27 @@ insert into sanpham(id,tensp,giasp,anh,mota)
 values	(7,'Trà tắc',10000,'Image/tratac.jpg','Trà tắc xí muội là sự kết hợp tuyệt vời giữa trà tắc thơm ngon và xí muội chua ngọt. Với hương vị độc đáo và màu sắc hấp dẫn trà tắc xí muội là lựa chọn hoàn hảo cho những ai yêu thích trà và muốn thưởng thức một loại đồ uống mới lạ. Chất lượng tuyệt vời và giá cả hợp lý trà tắc xí muội sẽ làm hài lòng cả những thực khách khó tính nhất. Hãy đến và thưởng thức ngay hôm nay!');
 ALTER TABLE cart
 DROP CONSTRAINT cart_id_sanpham_fkey;
-SELECT conname FROM pg_constraint WHERE conrelid = 'cart'::regclass;
+SELECT conname FROM pg_constraint WHERE conrelid = 'categorytype'::regclass;
 ALTER TABLE sanpham ALTER COLUMN anh TYPE varchar(300);
+ALTER TABLE cart ADD FOREIGN KEY(id_sanpham) REFERENCES sanpham(id);
+alter table donhang drop username;
+alter table account drop fullname;
+alter table account drop phone;
+alter table account drop address;
+alter table customer add username varchar(50);
+ALTER TABLE customer ADD FOREIGN KEY(username) REFERENCES account(username);
+ALTER TABLE account
+ADD PRIMARY KEY (id);
+ALTER TABLE customer 
+DROP CONSTRAINT customer_id_cart_fkey;
+alter table customer drop id_cart;
+create table categorytype(
+	id serial not null primary key,
+	id_sanpham int,
+	loaisp varchar(50),
+	foreign key (id_sanpham) references sanpham(id));
+ALTER TABLE categorytype 
+DROP CONSTRAINT categorytype_id_sanpham_fkey;
+alter table  sanpham add id_type int;
+ALTER TABLE sanpham ADD FOREIGN KEY(id_type) REFERENCES categorytype(id);
+alter table  categorytype drop id_sanpham;

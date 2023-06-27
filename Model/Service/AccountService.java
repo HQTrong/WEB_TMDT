@@ -19,12 +19,12 @@ public class AccountService {
         return list != null ? list : null;
     }
 
-    public boolean insertAccount(String userName, String pass, String phone, String email, String address, String fullname) throws SQLException {
+    public boolean insertAccount(String userName, String pass, String email) throws SQLException {
 
         Account user = dao.getUser(userName);
 
         if ((user.getUser()) == null) {
-            boolean account = dao.insertAccount(userName, pass, phone, email, address, fullname);
+            boolean account = dao.insertAccount(userName, pass, email);
 
             return account == true ? account : false;
         }

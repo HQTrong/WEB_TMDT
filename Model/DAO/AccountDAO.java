@@ -23,11 +23,8 @@ public class AccountDAO {
                 u.setId(rs.getInt(1));
                 u.setUser(rs.getString(2));
                 u.setPass(rs.getString(3));
-                u.setPhone(rs.getString(4));
-                u.setEmail(rs.getString(5));
-                u.setAddress(rs.getString(6));
-                u.setFullName(rs.getString(7));
-                u.setPhanQuyen(rs.getString(8));
+                u.setEmail(rs.getString(4));
+                u.setPhanQuyen(rs.getString(5));
             }
             rs.close();
             c.close();
@@ -55,11 +52,8 @@ public class AccountDAO {
                 u.setId(rs.getInt(1));
                 u.setUser(rs.getString(2));
                 u.setPass(rs.getString(3));
-                u.setPhone(rs.getString(4));
-                u.setEmail(rs.getString(5));
-                u.setAddress(rs.getString(6));
-                u.setFullName(rs.getString(7));
-                u.setPhanQuyen(rs.getString(8));
+                u.setEmail(rs.getString(4));
+                u.setPhanQuyen(rs.getString(5));
                 list.add(u);
             }
             rs.close();
@@ -74,20 +68,17 @@ public class AccountDAO {
         }
         return list;
     }
-    public boolean insertAccount(String userName, String pass,String phone, String email,String address, String fullname) throws SQLException {
+    public boolean insertAccount(String userName, String pass, String email) throws SQLException {
        Account u = new Account();
         boolean is = false;
         try {
             Connection c = db.connectDB(); // connect
-            String sql = "insert into account(username,pass,phone,email,address,fullname)" + "values (?,?,?,?,?,?);";
+            String sql = "insert into account(username,pass,email)" + "values (?,?,?);";
             PreparedStatement preparedStatement = null;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, pass);
-            preparedStatement.setString(3, phone);
-            preparedStatement.setString(4, email);
-            preparedStatement.setString(5, address);
-            preparedStatement.setString(6, fullname);
+            preparedStatement.setString(3, email);
             is = true;
             ResultSet rs = preparedStatement.executeQuery();
             preparedStatement.executeUpdate(sql);

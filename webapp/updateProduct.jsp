@@ -75,6 +75,12 @@
         <input type="text" name="anh" value="${product.anh}">
         <label> Mô tả: </label>
         <input type="text" name="mota" value="${product.mota}">
+        <label>Loại sản phẩm: </label>
+        <select name="idType">
+            <c:forEach items="${list}" var ="sp">
+                <option value="${sp.id}" >${sp.loaisp}</option>
+            </c:forEach>
+        </select>
         <br>
         <button style="color: white; background-color: blue; width: 100px; height: 30px"><b>UPDATE</b></button>
     </div>

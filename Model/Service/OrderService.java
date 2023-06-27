@@ -8,8 +8,8 @@ import java.util.List;
 
 public class OrderService {
     OrderDAO dao = new OrderDAO();
-    public boolean insertOrder(String userName, int thanhTien,String fullname) throws SQLException {
-            boolean order = dao.insertOrder(userName,thanhTien,fullname);
+    public boolean insertOrder( int thanhTien,int idCustomer) throws SQLException {
+            boolean order = dao.insertOrder(thanhTien,idCustomer);
             return order == true ? order : false;
     }
     public List<Order> getOrder() throws  SQLException{

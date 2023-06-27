@@ -20,18 +20,15 @@ public class RegisterController extends HttpServlet {
         try {
             String  username= req.getParameter("username");
             String pass=req.getParameter("pass");
-            String phone = req.getParameter("phone");
             String email= req.getParameter("email");
-            String address=req.getParameter("address");
-            String fullName=req.getParameter("fullname");
-            if(username=="" || pass==""||phone==""||email=="")
+            if(username=="" || pass==""||email=="")
             {
                 String status ="Vui lòng nhập đầy đủ thông tin";
                 req.setAttribute("status",status);
                 req.getRequestDispatcher("register.jsp").forward(req,resp);
             }else
             {
-                Boolean result = service.insertAccount(username,pass,phone,email,address,fullName);
+                Boolean result = service.insertAccount(username,pass,email);
                 if(result==false)
                 {
                     String status ="Tên đăng nhập đã tồn tại";

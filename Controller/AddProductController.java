@@ -1,6 +1,8 @@
 package com.example.tmdt.Controller;
 
+import com.example.tmdt.Model.POJO.CategoryType;
 import com.example.tmdt.Model.POJO.Product;
+import com.example.tmdt.Model.Service.CategoryService;
 import com.example.tmdt.Model.Service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,11 +18,20 @@ import java.util.List;
 @WebServlet(name = "AddProduct", value = "/add")
 public class AddProductController extends HttpServlet {
     ProductService productService= new ProductService();
+    CategoryService categoryService= new CategoryService();
     List<Product> list = new ArrayList<>();
+    List<CategoryType> listCategoryType= new ArrayList<>();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("addProduct.jsp").forward(req, resp);
+        try {
+            listCategoryType=categoryService.getCategoryType();
+            req.setAttribute("list",listCategoryType);
+            req.getRequestDispatcher("addProduct.jsp").forward(req, resp);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
@@ -31,10 +42,11 @@ public class AddProductController extends HttpServlet {
             String giasp = req.getParameter("giasp");
             String anh = req.getParameter("anh");
             String mota = req.getParameter("mota");
+            int idType= Integer.parseInt(req.getParameter("idType"));
 
             if(tensp!="" || giasp!="" || anh!=""||mota!="")
             {
-                boolean is = productService.insertProduct(tensp,Integer.parseInt(giasp),anh,mota);
+                boolean is = productService.insertProduct(tensp,Integer.parseInt(giasp),anh,mota,idType);
                 if(is)
                 {
                     list= productService.getProduct();

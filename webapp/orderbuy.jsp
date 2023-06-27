@@ -38,8 +38,6 @@
     <table style="margin-top: 20px;">
         <tr>
             <th>ID đơn hàng</th>
-            <th>Username</th>
-            <th>Họ và Tên khách hàng</th>
             <th>Tổng tiền</th>
         </tr>
         <c:choose>
@@ -48,8 +46,6 @@
             <c:set var="total" value="${total + sp.thanhTien}" />
             <tr>
                 <td>${sp.id}</td>
-                <td>${sp.username}</td>
-                <td>${sp.fullName}</td>
                 <td>${sp.thanhTien}</td>
                 <td>
                     <button style="background-color: blue;"><a href="detailorder?Id=${sp.id}"><b>Chi tiết</b></a>

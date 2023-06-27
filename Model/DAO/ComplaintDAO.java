@@ -13,7 +13,7 @@ public class ComplaintDAO {
         boolean is = false;
         try {
             Connection c = db.connectDB(); // connect
-            String sql = "insert into complaint(username,phone,complaint)" + "values (?,?,?);";
+            String sql = "insert into comment(username,phone,comment)" + "values (?,?,?);";
             PreparedStatement preparedStatement = null;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, username);
@@ -41,7 +41,7 @@ public class ComplaintDAO {
             Connection c = db.connectDB(); // connect
             stmt = c.createStatement();
 
-            String sql = "select * from complaint;";
+            String sql = "select * from comment;";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 Complaint u = new Complaint();

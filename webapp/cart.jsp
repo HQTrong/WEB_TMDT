@@ -13,6 +13,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </head>
 <body>
+<h5 style="color: red">${status}</h5>
 <div class="container-fluid">
   <nav class="navbar " style="background-color:white ;">
 
@@ -61,6 +62,14 @@
       <div class="col">
         <a  href="home.jsp">Trang chủ/</a>
         <a href="cart.jsp" >Giỏ hàng</a>
+      </div>
+      <div class="col">
+      <label>Tên người nhận</label>
+        <input type="text" name="fullname">
+      <label>Địện thoại</label>
+        <input type="text" name="phone">
+      <label>Địa chỉ</label>
+        <input type="text" name="address">
       </div>
     </div>
   </div>
@@ -116,16 +125,40 @@
       </div>
     </div>
   </div>
-
   <script>
 
+    function showNotification(user,tongTien) {
+      const fullnameInput = document.querySelector('input[name="fullname"]');
+      const fullname = fullnameInput.value;
+
+      // Lấy giá trị từ trường input Điện thoại
+      const phoneInput = document.querySelector('input[name="phone"]');
+      const phone = phoneInput.value;
+
+      // Lấy giá trị từ trường input Địa chỉ
+      const addressInput = document.querySelector('input[name="address"]');
+      const address = addressInput.value;
+      if (user == null || user.trim() === "") {
+        alert("Đăng nhập trước khi mua hàng");
+      } else if(tongTien==0) {
+        alert("Vui lòng chọn sản phẩm cần mua");
+      }
+      else if(address=="" || phone=="" || fullname=="")
+      {
+        alert("Vui lòng điền đầy đủ thông tin giao hàng");
+      }
+      else
+      {
+        alert("Mua hàng thành công");
+        calculateTotal();
+      }
+    }
     function updateTotal(index, gia) {
       const quantity = document.getElementById("quantity" + index).value;
       const total = quantity * gia;
       document.getElementById("total" + index).innerHTML = "<b>" + total + " đồng</b>";
       if (quantity == 0) {
         const row = document.getElementById("row" + index);
-        //row.parentNode.removeChild(row);
         row.style.display = "none";
       }
         calculateTotal();
@@ -136,6 +169,7 @@
       let soLuong = [];
       const quantityFields = document.querySelectorAll('input[type="number"]');
       const giaElements = document.querySelectorAll('p[id^="gia"]');
+
       for (let i = 0; i < quantityFields.length; i++) {
         const quantity = parseInt(quantityFields[i].value);
         const gia = parseInt(giaElements[i].innerText);
@@ -144,15 +178,28 @@
       }
       document.getElementById("tongTien").innerText = tongTien + " đồng";
       document.getElementById("quantity").innerText = soLuong.join(", ");
+
       updateDonHangLink(tongTien, soLuong);
     }
 
     function updateDonHangLink(tongTien, soLuong) {
       const donHangLink = document.getElementById("donHangLink");
       const quantityParams = soLuong.join(",");
-      const href = "donhang?tongTien=" + tongTien + "&username=" + "${sessionScope.user}" + "&fullname=" + "${sessionScope.fullname}" +"&soLuong=" +quantityParams;
+      const fullnameInput = document.querySelector('input[name="fullname"]');
+      const fullname = fullnameInput.value;
+
+      // Lấy giá trị từ trường input Điện thoại
+      const phoneInput = document.querySelector('input[name="phone"]');
+      const phone = phoneInput.value;
+
+      // Lấy giá trị từ trường input Địa chỉ
+      const addressInput = document.querySelector('input[name="address"]');
+      const address = addressInput.value;
+      const href = "donhang?tongTien=" + tongTien + "&username=" + "${sessionScope.user}" + "&soLuong=" + quantityParams + "&fullname=" + fullname + "&address=" + address + "&phone=" + phone;
+
       donHangLink.setAttribute("href", href);
     }
+
 
     // Lắng nghe sự kiện onchange của các trường số lượng
     const quantityFields = document.querySelectorAll('input[type="number"]');
@@ -167,17 +214,7 @@
   </script>
     <hr>
         <script>
-          function showNotification(user,tongTien) {
-            if (user == null || user.trim() === "") {
-              alert("Đăng nhập trước khi mua hàng");
-            } else if(tongTien==0) {
-              alert("Vui lòng chọn sản phẩm cần mua");
-            }
-            else
-            {
-              alert("Mua hàng thành công");
-            }
-          }
+
         </script>
     </div>
   </div>

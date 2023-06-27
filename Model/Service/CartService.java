@@ -24,4 +24,8 @@ public class CartService {
         List<Cart> list = dao.getCart();
         return !list.isEmpty()? list:null;
     }
+    public  boolean removeCart(int idSanPham) throws  SQLException{
+        boolean result = dao.removeCart(idSanPham);
+        return result==true ?result: false;
+    }
 }

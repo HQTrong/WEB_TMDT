@@ -1,10 +1,12 @@
 package com.example.tmdt.Controller;
 
 import com.example.tmdt.Model.POJO.Account;
+import com.example.tmdt.Model.POJO.Customer;
 import com.example.tmdt.Model.POJO.Order;
 import com.example.tmdt.Model.POJO.Product;
 import com.example.tmdt.Model.Service.AccountService;
 import com.example.tmdt.Model.Service.CartService;
+import com.example.tmdt.Model.Service.CustomerService;
 import com.example.tmdt.Model.Service.OrderService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,6 +23,7 @@ import java.util.List;
 @WebServlet(name="Order", value = "/donhang")
 public class OrderController extends HttpServlet {
     AccountService accountService= new AccountService();
+    CustomerService customerService = new CustomerService();
     OrderService orderService = new OrderService();
     CartService cartService= new CartService();
 
@@ -29,6 +32,9 @@ public class OrderController extends HttpServlet {
         try {
             HttpSession session = req.getSession();
             List<Integer> quantityList = new ArrayList<>();
+            String fullname= req.getParameter("fullname");
+            String address= req.getParameter("address");
+            String phone= req.getParameter("phone");
             String username = req.getParameter("username");
             String soLuong = req.getParameter("soLuong");
             List<Product> cartItems = (List<Product>) session.getAttribute("cartItems");
@@ -55,10 +61,8 @@ public class OrderController extends HttpServlet {
             }
 
             int thanhTien= Integer.parseInt(req.getParameter("tongTien"));
-            String fullname= req.getParameter("fullname");
+
             Account account =accountService.getUser(username);
-            String address = account.getAddress();
-            String phone = account.getPhone();
             if(username!=null)
             {
                 if(thanhTien==0)
@@ -67,27 +71,41 @@ public class OrderController extends HttpServlet {
                 }
                 else
                 {
-                    orderService.insertOrder(username,thanhTien,fullname);
-                    List<Order> orderList = orderService.getOrder();
-                    String lastOrderId = null;
+                    if(fullname!="" || phone!=""||address!="" )
+                    {
+                        customerService.insertCustomer(fullname,address,phone,username);
+                        List<Customer> customerList = customerService.getCustomer();
+                        String lastCustomerId = null;
+                        if (!customerList.isEmpty()) {
+                            Customer lastCustomer = customerList.get(customerList.size() - 1);
+                            lastCustomerId = String.valueOf(lastCustomer.getId());
+                        }
+                        orderService.insertOrder(thanhTien,Integer.parseInt(lastCustomerId));
+                        List<Order> orderList = orderService.getOrder();
+                        String lastOrderId = null;
+                        if (!orderList.isEmpty()) {
+                            Order lastOrder = orderList.get(orderList.size() - 1);
+                            lastOrderId = String.valueOf(lastOrder.getId());
+                        }
+                        for (Product item: cartItems) {
+                            cartService.insertCart(item.getId(),item.getGia(),Integer.parseInt(lastOrderId),item.getSoLuong(),item.getTen());
+                        }
 
-                    if (!orderList.isEmpty()) {
-                        Order lastOrder = orderList.get(orderList.size() - 1);
-                        lastOrderId = String.valueOf(lastOrder.getId());
+                        session.invalidate();
+                        HttpSession newSession = req.getSession(true);
+                        newSession.setAttribute("user",username);
+                        req.setAttribute("fullname",fullname);
+                        req.setAttribute("phone",phone);
+                        req.setAttribute("address",address);
+                        req.setAttribute("cart",cartItems);
+                        req.setAttribute("tongtien",thanhTien);
+                        req.getRequestDispatcher("bill.jsp").forward(req,resp);
                     }
-                    for (Product item: cartItems) {
-                        cartService.insertCart(item.getId(),item.getGia(),Integer.parseInt(lastOrderId),item.getSoLuong(),item.getTen());
+                    else
+                    {
+                        req.getRequestDispatcher("cart.jsp").forward(req,resp);
                     }
 
-                    session.invalidate();
-                    HttpSession newSession = req.getSession(true);
-                    newSession.setAttribute("user",username);
-                    req.setAttribute("fullname",fullname);
-                    req.setAttribute("cart",cartItems);
-                    req.setAttribute("phone",phone);
-                    req.setAttribute("address",address);
-                    req.setAttribute("tongtien",thanhTien);
-                    req.getRequestDispatcher("bill.jsp").forward(req,resp);
                 }
             }
             else

@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
 
         try {
             user = servive.getUser(username);
-            if (username != null) {
+            if (user.getUser()!=null) {
                 if (user.getPass().equals(pass)) {
                     if (user.getPhanQuyen()!=null) {
                         list = productService.getProduct();
@@ -54,7 +54,6 @@ public class LoginController extends HttpServlet {
                 req.setAttribute("status", status);
                 req.getRequestDispatcher("login.jsp").forward(req, resp);
             }
-            session.setAttribute("fullname", user.getFullName());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

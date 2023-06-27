@@ -24,16 +24,20 @@ public class ProductService {
         Product product = dao.getProductByName_ID(name,ID);
         return  product != null ? product : null;
     }
-    public  boolean insertProduct(String tesnsp, int giasp, String anh, String mota) throws  SQLException{
-        boolean result = dao.insertProduct(tesnsp,giasp,anh,mota);
+    public  boolean insertProduct(String tesnsp, int giasp, String anh, String mota, int idType) throws  SQLException{
+        boolean result = dao.insertProduct(tesnsp,giasp,anh,mota,idType);
         return result==true ?result: false;
     }
-    public  boolean updateProduct(String tesnsp, int giasp, String anh, String mota, int id) throws  SQLException{
-        boolean result = dao.updateProduct(tesnsp,giasp,anh,mota,id);
+    public  boolean updateProduct(String tesnsp, int giasp, String anh, String mota, int id,int idType) throws  SQLException{
+        boolean result = dao.updateProduct(tesnsp,giasp,anh,mota,id,idType);
         return result==true ?result: false;
     }
     public  boolean removeProduct(int id) throws  SQLException{
         boolean result = dao.removeProduct(id);
         return result==true ?result: false;
+    }
+    public List<Product> getProductName(String name) throws SQLException {
+        List<Product> list = dao.getProductName(name);
+        return !list.isEmpty() ? list : null;
     }
 }

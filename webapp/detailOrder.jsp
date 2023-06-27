@@ -35,6 +35,9 @@
 <body style="background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm222batch5-kul-03.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=08fbfb223887d33030e97becaf4e20dc); background-repeat: no-repeat; background-size:100%;">
 <center style="padding-top: 30px">
     <h1>CHI TIẾT ĐƠN HÀNG ${id}</h1>
+    <p>Tên người nhận: ${fullname}</p>
+    <p>Số điện thoại: ${phone}</p>
+    <p>Địa chỉ: ${address}</p>
     <table style="margin-top: 20px;">
         <tr>
             <th>ID giỏ hàng</th>

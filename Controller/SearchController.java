@@ -29,8 +29,8 @@ public class SearchController extends HttpServlet {
             }
             else if(productId.isEmpty())
             {
-                Product product = productService.getProductByName(name);
-                req.setAttribute("product",product);
+                List<Product> listp =productService.getProductName(name);
+                req.setAttribute("list",listp);
                 req.getRequestDispatcher("admin.jsp").forward(req,resp);
             }else if (name.isEmpty())
             {

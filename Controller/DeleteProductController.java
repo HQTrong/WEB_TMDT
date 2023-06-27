@@ -21,6 +21,7 @@ public class DeleteProductController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             int id = Integer.parseInt(req.getParameter("Id"));
+            cartService.removeCart(id);
             boolean is = productService.removeProduct(id);
             if (is) {
                 list= productService.getProduct();
