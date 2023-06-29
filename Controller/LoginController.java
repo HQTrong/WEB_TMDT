@@ -23,6 +23,17 @@ public class LoginController extends HttpServlet {
     Account admin= null;
     ProductService productService= new ProductService();
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            List<Product> list = productService.getProduct();
+            req.setAttribute("list",list);
+            req.getRequestDispatcher("admin.jsp").forward(req,resp);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
