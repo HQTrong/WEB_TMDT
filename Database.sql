@@ -113,3 +113,5 @@ DROP CONSTRAINT categorytype_id_sanpham_fkey;
 alter table  sanpham add id_type int;
 ALTER TABLE sanpham ADD FOREIGN KEY(id_type) REFERENCES categorytype(id);
 alter table  categorytype drop id_sanpham;
+alter table comment drop pass;
+alter table comment add phone varchar(10);
