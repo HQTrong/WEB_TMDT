@@ -59,12 +59,13 @@
   </nav>
   <div class="container-fluid" style="width:91.5%;">
     <div class="row">
-      <div class="col">
+      <div class="col-4">
         <a  href="home.jsp">Trang chủ/</a>
         <a href="cart.jsp" >Giỏ hàng</a>
+
       </div>
-      <div class="col">
-      <label>Tên người nhận</label>
+      <div class="col-8" >
+        <label>Tên người nhận</label>
         <input type="text" name="fullname">
       <label>Địện thoại</label>
         <input type="text" name="phone">
@@ -94,7 +95,7 @@
         <div class="col-4 col-lg-2 text-center">
           <input type="number" id="quantity${status.index}" value="${sp.soLuong}" min="0" onchange="updateTotal('${status.index}','${sp.gia}')" style="width: 75px">
         </div>
-        <div class="col-4 col-lg-2 text-center"><p id="total${status.index}"><b>${sp.gia} đồng</b></p></div>
+        <div class="col-4 col-lg-2 text-center"><p id="total${status.index}"><b>${sp.gia*sp.soLuong}đồng</b></p></div>
       </div>
       <div class="w-100"></div> <!-- Xuống dòng mới -->
       <c:set var="tongTien" value="${tongTien + sp.gia}" />

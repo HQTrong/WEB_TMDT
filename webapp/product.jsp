@@ -93,7 +93,7 @@
                     <c:forEach items="${list}" var="sp">
                         <div class="col-4">
                             <div class="card" style="width: 95%; margin-bottom: 30px;">
-                                <img src="${sp.anh}" alt="${sp.ten}" style="max-height: 250px ;overflow:hidden;">
+                                <img src="${sp.anh}" alt="${sp.ten}" style="max-height: 200px ;overflow:hidden;">
                                 <div class="card-body" style="background-color: gainsboro;">
                                     <center>
                                         <a href="mota?Id=${sp.id}" style="text-decoration: none; font-size: 30px;"><b>${sp.ten}</b></a>
