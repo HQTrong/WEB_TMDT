@@ -1,7 +1,6 @@
 package com.example.tmdt.Controller;
 
 import com.example.tmdt.Model.Service.AccountService;
-import com.example.tmdt.Model.Service.CartService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,7 +12,6 @@ import java.sql.SQLException;
 
 @WebServlet(name="Cart", value = "/cart")
 public class CartController extends HttpServlet {
-    CartService service = new CartService();
     AccountService accountService= new AccountService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,8 +32,6 @@ public class CartController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
-
 
     @Override
     public void destroy() {

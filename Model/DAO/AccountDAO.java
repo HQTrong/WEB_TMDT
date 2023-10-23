@@ -24,7 +24,7 @@ public class AccountDAO {
                 u.setUser(rs.getString(2));
                 u.setPass(rs.getString(3));
                 u.setEmail(rs.getString(4));
-                u.setPhanQuyen(rs.getString(5));
+                u.setRole(rs.getString(5));
             }
             rs.close();
             c.close();
@@ -53,7 +53,7 @@ public class AccountDAO {
                 u.setUser(rs.getString(2));
                 u.setPass(rs.getString(3));
                 u.setEmail(rs.getString(4));
-                u.setPhanQuyen(rs.getString(5));
+                u.setRole(rs.getString(5));
                 list.add(u);
             }
             rs.close();
@@ -94,6 +94,27 @@ public class AccountDAO {
             db.closeBD();
         }
         return is;
-
+    }
+    public boolean updateAccount(String username,String password, String email) throws SQLException {
+        Account account = new Account();
+        PreparedStatement preparedStatement = null;
+        boolean is = false;
+        try {
+            Connection c = db.connectDB();
+            String sql = "UPDATE account SET pass=?,email =? WHERE username=?;";
+            is = true;
+            preparedStatement = c.prepareStatement(sql);
+            preparedStatement.setString(1,password);
+            preparedStatement.setString(2,email);
+            preparedStatement.setString(3,username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.close();
+            c.close();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            db.closeBD();
+        }
+        return is;
     }
 }

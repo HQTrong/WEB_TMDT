@@ -25,6 +25,12 @@
         {
             font-weight: 600;
         }
+        thead{
+            background: lightsteelblue;
+        }
+        .table.table-striped tbody tr:hover{
+            background: gainsboro;
+        }
     </style>
     <script type="text/javascript"></script>
 </head>
@@ -32,17 +38,21 @@
 <center style="padding-top: 30px">
     <h1>ĐƠN HÀNG ĐÃ BÁN</h1>
     <table style="margin-top: 20px;">
+        <thead>
         <tr>
             <th>ID đơn hàng</th>
             <th>Tổng tiền</th>
+            <th></th>
         </tr>
+        </thead>
+        <tbody>
         <c:choose>
         <c:when test="${list!=null}">
         <c:forEach items="${list}" var="sp" >
-            <c:set var="total" value="${total + sp.thanhTien}" />
+            <c:set var="total" value="${total + sp.total}" />
             <tr>
                 <td>${sp.id}</td>
-                <td>${sp.thanhTien}</td>
+                <td>${sp.total}</td>
                 <td>
                     <button style="background-color: blue;"><a href="detailorder?Id=${sp.id}" style="color: white; text-decoration: none;"><b>Chi tiết</b></a>
                     </button>
@@ -54,6 +64,7 @@
         <tr>
 
         </tr>
+        </tbody>
     </table>
     <p style="font-size: 30px;"><b>Tổng tiền: ${total} đồng</b></p>
 </center>

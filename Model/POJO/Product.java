@@ -2,49 +2,32 @@ package com.example.tmdt.Model.POJO;
 
 public class Product {
     private int id;
-    private  String ten;
-    private  int gia;
-    private  String anh;
-    private  String mota;
-    private  int soLuong;
+    private  String name;
+    private  int price;
+    private  String img;
+    private  String description;
+    private  int quantity;
     private  int idType;
 
+    public Product() {
+    }
 
-    public Product(int id, String ten, int gia, String anh, String mota, int soLuong,int idType) {
+    public Product(int id, String name, int price, String img, String description, int quantity, int idType) {
         this.id = id;
-        this.ten = ten;
-        this.gia = gia;
-        this.anh = anh;
-        this.mota = mota;
-        this.soLuong = soLuong;
-        this.idType=idType;
-    }
-
-    public Product(int id, String ten, int gia, String anh, int soLuong) {
-        this.id=id;
-        this.ten = ten;
-        this.gia = gia;
-        this.anh = anh;
-        this.soLuong=soLuong;
-    }
-
-    public int getIdType() {
-        return idType;
-    }
-
-    public void setIdType(int idType) {
+        this.name = name;
+        this.price = price;
+        this.img = img;
+        this.description = description;
+        this.quantity = quantity;
         this.idType = idType;
     }
 
-    public int getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
-    }
-
-    public Product() {
+    public Product(int id, String name, int price, String img, int quantity) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.img = img;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -55,35 +38,51 @@ public class Product {
         this.id = id;
     }
 
-    public String getTen() {
-        return ten;
+    public String getName() {
+        return name;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getGia() {
-        return gia;
+    public int getPrice() {
+        return price;
     }
 
-    public void setGia(int gia) {
-        this.gia = gia;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public String getAnh() {
-        return anh;
+    public String getImg() {
+        return img;
     }
 
-    public void setAnh(String anh) {
-        this.anh = anh;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public String getMota() {
-        return mota;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMota(String mota) {
-        this.mota = mota;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getIdType() {
+        return idType;
+    }
+
+    public void setIdType(int idType) {
+        this.idType = idType;
     }
 }

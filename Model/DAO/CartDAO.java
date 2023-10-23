@@ -14,7 +14,7 @@ public class CartDAO {
         boolean is = false;
         try {
             Connection c = db.connectDB(); // connect
-            String sql = "insert into cart(id_sanpham,giasp,id_donhang,soluong,tensp)" + "values (?,?,?,?,?);";
+            String sql = "insert into cart(idproduct,price,idorder,quantity,name)" + "values (?,?,?,?,?);";
             PreparedStatement preparedStatement = null;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, idSanPham);
@@ -46,18 +46,18 @@ public class CartDAO {
         try {
             Connection c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
-            String sql = " select * from cart where id_donhang =?; ";
+            String sql = " select * from cart where idorder =?; ";
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, idDonHang);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Cart u = new Cart();
-                u.setIdCart(rs.getInt(1));
+                u.setId(rs.getInt(1));
                 u.setIdProduct(rs.getInt(2));
-                u.setGiasp(rs.getInt(3));
-                u.setIdDonHang(rs.getInt(4));
-                u.setSoLuong(rs.getInt(5));
-                u.setTensp(rs.getString(6));
+                u.setPrice(rs.getInt(3));
+                u.setIdOrder(rs.getInt(4));
+                u.setQuantity(rs.getInt(5));
+                u.setName(rs.getString(6));
 
                 list.add(u);
             }
@@ -78,16 +78,16 @@ public class CartDAO {
         try {
             Connection c = db.connectDB(); // connect
             stmt = c.createStatement();
-            String sql ="select * from cart ; ";
+            String sql ="select * from cart;";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 Cart u = new Cart();
-                u.setIdCart(rs.getInt(1));
+                u.setId(rs.getInt(1));
                 u.setIdProduct(rs.getInt(2));
-                u.setGiasp(rs.getInt(3));
-                u.setIdDonHang(rs.getInt(4));
-                u.setSoLuong(rs.getInt(5));
-                u.setTensp(rs.getString(6));
+                u.setPrice(rs.getInt(3));
+                u.setIdOrder(rs.getInt(4));
+                u.setQuantity(rs.getInt(5));
+                u.setName(rs.getString(6));
                 list.add(u);
             }
             rs.close();
@@ -105,7 +105,7 @@ public class CartDAO {
         PreparedStatement preparedStatement = null;
         try {
             Connection c = db.connectDB();
-            String sql = "delete from  cart where id_sanpham=?;";
+            String sql = "delete from  cart where idproduct=?;";
             is = true;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, idSanPham);

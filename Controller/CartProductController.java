@@ -60,8 +60,8 @@ public class CartProductController extends HttpServlet {
                 Product foundProduct = null;
 
                 for (Product item : cartItems) {
-                    if (item.getTen().equals(name)) {
-                        sl = item.getSoLuong() + 1;
+                    if (item.getName().equals(name)) {
+                        sl = item.getQuantity() + 1;
                         foundProduct = item;
                         found = true;
                         break;

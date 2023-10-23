@@ -14,7 +14,7 @@ public class OrderDAO {
         boolean is = false;
         try {
             Connection c = db.connectDB(); // connect
-            String sql = "insert into donhang(thanhtien,id_customer)" + "values (?,?);";
+            String sql = "insert into tborder(total,id_customer)" + "values (?,?);";
             PreparedStatement preparedStatement = null;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, thanhTien);
@@ -43,12 +43,12 @@ public class OrderDAO {
             Connection c = db.connectDB(); // connect
             stmt = c.createStatement();
 
-            String sql = "select * from donhang;";
+            String sql = "select * from tborder;";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 Order u = new Order();
                 u.setId(rs.getInt(1));
-                u.setThanhTien(rs.getInt(2));
+                u.setTotal(rs.getInt(2));
                 u.setIdCustomer(rs.getInt(3));
                 list.add(u);
             }
@@ -70,13 +70,13 @@ public class OrderDAO {
         try {
             Connection c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
-            String sql = " select * from donhang where id_donhang =?; ";
+            String sql = " select * from tborder where id =?; ";
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 u.setId(rs.getInt(1));
-                u.setThanhTien(rs.getInt(2));
+                u.setTotal(rs.getInt(2));
                 u.setIdCustomer(rs.getInt(3));
             }
             rs.close();

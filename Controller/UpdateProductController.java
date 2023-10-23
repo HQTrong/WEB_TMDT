@@ -1,8 +1,8 @@
 package com.example.tmdt.Controller;
 
-import com.example.tmdt.Model.POJO.CategoryType;
+import com.example.tmdt.Model.POJO.ProductType;
 import com.example.tmdt.Model.POJO.Product;
-import com.example.tmdt.Model.Service.CategoryService;
+import com.example.tmdt.Model.Service.ProductTypeService;
 import com.example.tmdt.Model.Service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,8 +17,8 @@ import java.util.List;
 
 @WebServlet(name = "UpdateProduct", value = "/update")
 public class UpdateProductController extends HttpServlet {
-    CategoryService categoryService= new CategoryService();
-    List<CategoryType> listCategoryType= new ArrayList<>();
+    ProductTypeService productTypeService = new ProductTypeService();
+    List<ProductType> listProductType = new ArrayList<>();
     ProductService productService= new ProductService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,8 +26,8 @@ public class UpdateProductController extends HttpServlet {
         {
             int id = Integer.parseInt(req.getParameter("Id"));
             Product product = productService.getProductByID(id);
-            listCategoryType=categoryService.getCategoryType();
-            req.setAttribute("list",listCategoryType);
+            listProductType = productTypeService.getProductType();
+            req.setAttribute("list", listProductType);
             req.setAttribute("product",product);
             req.getRequestDispatcher("updateProduct.jsp").forward(req,resp);
         } catch (Exception e)

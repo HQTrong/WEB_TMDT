@@ -31,4 +31,9 @@ public class AccountService {
         return false;
     }
 
+    public  boolean updateAccount(String username,String password, String email) throws  SQLException{
+        boolean result = dao.updateAccount(username,password,email);
+        return result == true ?result: false;
+    }
+
 }

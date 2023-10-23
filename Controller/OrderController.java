@@ -51,8 +51,8 @@ public class OrderController extends HttpServlet {
                     Product product = iterator.next();
                     if (i < listSL.length) {
                         int number = Integer.parseInt(listSL[i]);
-                        product.setSoLuong(number);
-                        if (product.getSoLuong() == 0) {
+                        product.setQuantity(number);
+                        if (product.getQuantity() == 0) {
                             iterator.remove(); // Remove the current element using the iterator
                         }
                     }
@@ -88,7 +88,7 @@ public class OrderController extends HttpServlet {
                             lastOrderId = String.valueOf(lastOrder.getId());
                         }
                         for (Product item: cartItems) {
-                            cartService.insertCart(item.getId(),item.getGia(),Integer.parseInt(lastOrderId),item.getSoLuong(),item.getTen());
+                            cartService.insertCart(item.getId(),item.getPrice(),Integer.parseInt(lastOrderId),item.getQuantity(),item.getName());
                         }
 
                         session.invalidate();

@@ -66,17 +66,17 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-4"><img src="${product.anh}"  style=" width:350px; height: 350px; max-height: 350px ;overflow:hidden;"></div>
+            <div class="col-4"><img src="${product.img}"  style=" width:350px; height: 350px; max-height: 350px ;overflow:hidden;"></div>
             <div class="col-8">
                 <h2>Thông tin chi tiết</h2>
                 <p>Tên sản phẩm:
-                    ${product.ten}
+                    ${product.name}
                 </p>
                 <p>Giá:
-                    ${product.gia} đồng
+                    ${product.price} đồng
                 </p>
                 <p>
-                    - ${product.mota}
+                    - ${product.description}
                 </p>
 
             </div>

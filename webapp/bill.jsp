@@ -53,14 +53,14 @@
     <hr>
     <c:forEach items="${cart}" var="sp" varStatus="status">
         <div class="row row-cols-2 row-cols-lg-3" id="row${status.index}">
-            <div class="col-4 col-lg-2 text-center"><img src="${sp.anh}" style="height:100px; width: 100px;"></div>
-            <div class="col-4 col-lg-2 text-center"><p><b>${sp.ten}</b></p></div>
-            <div class="col-4 col-lg-2 text-center"><p id="gia${status.index}"><b>${sp.gia} đồng</b></p></div>
+            <div class="col-4 col-lg-2 text-center"><img src="${sp.img}" style="height:100px; width: 100px;"></div>
+            <div class="col-4 col-lg-2 text-center"><p><b>${sp.name}</b></p></div>
+            <div class="col-4 col-lg-2 text-center"><p id="gia${status.index}"><b>${sp.price} đồng</b></p></div>
             <div class="col-4 col-lg-2 text-center">
-    <p><b>${sp.soLuong} </b></p>
+    <p><b>${sp.quantity} </b></p>
             </div>
             <div class="col-4 col-lg-2 text-center">
-               <p><b>${sp.soLuong* sp.gia} đồng</b></p>
+               <p><b>${sp.quantity* sp.price} đồng</b></p>
             </div>
         </div>
         <div class="w-100"></div>

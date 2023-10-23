@@ -1,8 +1,8 @@
 package com.example.tmdt.Controller;
 
-import com.example.tmdt.Model.POJO.CategoryType;
+import com.example.tmdt.Model.POJO.ProductType;
 import com.example.tmdt.Model.POJO.Product;
-import com.example.tmdt.Model.Service.CategoryService;
+import com.example.tmdt.Model.Service.ProductTypeService;
 import com.example.tmdt.Model.Service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,15 +18,15 @@ import java.util.List;
 @WebServlet(name = "AddProduct", value = "/add")
 public class AddProductController extends HttpServlet {
     ProductService productService= new ProductService();
-    CategoryService categoryService= new CategoryService();
+    ProductTypeService productTypeService = new ProductTypeService();
     List<Product> list = new ArrayList<>();
-    List<CategoryType> listCategoryType= new ArrayList<>();
+    List<ProductType> listProductType = new ArrayList<>();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            listCategoryType=categoryService.getCategoryType();
-            req.setAttribute("list",listCategoryType);
+            listProductType = productTypeService.getProductType();
+            req.setAttribute("list", listProductType);
             req.getRequestDispatcher("addProduct.jsp").forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);

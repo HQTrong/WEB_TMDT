@@ -30,6 +30,12 @@
             font-size: 25px;
             color: blue;
         }
+        thead{
+            background: lightsteelblue;
+        }
+        .table.table-striped tbody tr:hover{
+            background: gainsboro;
+        }
     </style>
     <script type="text/javascript"></script>
 </head>
@@ -37,12 +43,15 @@
 <center style="padding-top: 30px">
     <h1>GÓP Ý CỦA KHÁCH HÀNG</h1>
     <table style="margin-top: 20px;">
+        <thead>
         <tr>
             <th>ID</th>
             <th>Username</th>
             <th>Điện thoại</th>
             <th>Góp ý</th>
         </tr>
+        </thead>
+        <tbody>
         <c:choose>
         <c:when test="${list!=null}">
         <c:forEach items="${list}" var="sp" >
@@ -53,10 +62,10 @@
                 <td>${sp.complaint}</td>
             </tr>
         </c:forEach>
-    </table>
-    </table>
     </c:when>
     </c:choose>
+    </tbody>
+    </table>
 </center>
 <br>
 <a href="login"> Trang Admin <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">

@@ -30,19 +30,28 @@
             font-size: 26px;
             color: blue;
         }
+        thead{
+            background: lightsteelblue;
+        }
+        .table.table-striped tbody tr:hover{
+            background: gainsboro;
+        }
     </style>
     <script type="text/javascript"></script>
 </head>
 <body style="background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm222batch5-kul-03.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=08fbfb223887d33030e97becaf4e20dc); background-repeat: no-repeat; background-size:100%;">
 <center style="padding-top: 30px">
     <h1>DANH SÁCH KHÁCH HÀNG</h1>
-    <table style="margin-top: 20px;">
+    <table style="margin-top: 20px;" class="table table-striped">
+        <thead>
         <tr>
             <th>ID</th>
             <th>Tên đăng nhập</th>
             <th>Mật khẩu</th>
             <th>Email</th>
         </tr>
+        </thead>
+    <tbody>
         <c:choose>
         <c:when test="${list!=null}">
         <c:forEach items="${list}" var="sp" >
@@ -53,10 +62,10 @@
                 <td>${sp.email}</td>
             </tr>
         </c:forEach>
-    </table>
-        </table>
     </c:when>
     </c:choose>
+        </tbody>
+    </table>
 </center>
 <br>
 <a href="login"> Trang Admin <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">

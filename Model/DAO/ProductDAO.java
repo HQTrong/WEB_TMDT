@@ -17,15 +17,15 @@ public class ProductDAO {
             Connection c = db.connectDB(); // connect
             stmt = c.createStatement();
 
-            String sql = "select * from sanpham;";
+            String sql = "select * from product order by id asc ;";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 Product u = new Product();
                 u.setId(rs.getInt(1));
-                u.setTen(rs.getString(2));
-                u.setGia(rs.getInt(3));
-                u.setAnh(rs.getString(4));
-                u.setMota(rs.getString(5));
+                u.setName(rs.getString(2));
+                u.setPrice(rs.getInt(3));
+                u.setImg(rs.getString(4));
+                u.setDescription(rs.getString(5));
                 u.setIdType(rs.getInt(6));
                 list.add(u);
             }
@@ -46,16 +46,16 @@ public class ProductDAO {
         try {
             Connection c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
-            String sql = " select * from sanpham where id =?; ";
+            String sql = " select * from product where id =?; ";
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 u.setId(rs.getInt(1));
-                u.setTen(rs.getString(2));
-                u.setGia(rs.getInt(3));
-                u.setAnh(rs.getString(4));
-                u.setMota(rs.getString(5));
+                u.setName(rs.getString(2));
+                u.setPrice(rs.getInt(3));
+                u.setImg(rs.getString(4));
+                u.setDescription(rs.getString(5));
                 u.setIdType(rs.getInt(6));
             }
             rs.close();
@@ -72,16 +72,16 @@ public class ProductDAO {
         try {
             Connection c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
-            String sql = " select * from sanpham where tensp =?; ";
+            String sql = " select * from product where name =?; ";
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, name);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 u.setId(rs.getInt(1));
-                u.setTen(rs.getString(2));
-                u.setGia(rs.getInt(3));
-                u.setAnh(rs.getString(4));
-                u.setMota(rs.getString(5));
+                u.setName(rs.getString(2));
+                u.setPrice(rs.getInt(3));
+                u.setImg(rs.getString(4));
+                u.setDescription(rs.getString(5));
                 u.setIdType(rs.getInt(6));
             }
             rs.close();
@@ -99,17 +99,17 @@ public  Product getProductByName_ID(String name, int ID) throws SQLException{
         {
             Connection c = db.connectDB();
             PreparedStatement preparedStatement=null;
-            String sql = "select * from sanpham where tensp =? and id= ?;";
+            String sql = "select * from product where name =? and id= ?;";
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1,name);
             preparedStatement.setInt(2,ID);
             ResultSet rs= preparedStatement.executeQuery();
             while (rs.next()) {
                 u.setId(rs.getInt(1));
-                u.setTen(rs.getString(2));
-                u.setGia(rs.getInt(3));
-                u.setAnh(rs.getString(4));
-                u.setMota(rs.getString(5));
+                u.setName(rs.getString(2));
+                u.setPrice(rs.getInt(3));
+                u.setImg(rs.getString(4));
+                u.setDescription(rs.getString(5));
                 u.setIdType(rs.getInt(6));
             }
             rs.close();
@@ -126,7 +126,7 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
         boolean is = false;
         try {
             Connection c = db.connectDB(); // connect
-            String sql = "insert into sanpham(tensp,giasp,anh,mota,id_type)" + "values (?,?,?,?,?);";
+            String sql = "insert into product(name,price,img,description,id_type)" + "values (?,?,?,?,?);";
             PreparedStatement preparedStatement = null;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, tensp);
@@ -154,8 +154,8 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
         boolean is = false;
         try {
             Connection c = db.connectDB();
-            String sql = "UPDATE sanpham\n" +
-                    "SET tensp=?,giasp =?,anh=?,mota =?, id_type=?\n" +
+            String sql = "UPDATE product\n" +
+                    "SET name=?,price =?,img=?,description =?, id_type=?\n" +
                     "WHERE id=?;";
             is = true;
             preparedStatement = c.prepareStatement(sql);
@@ -180,7 +180,7 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
         PreparedStatement preparedStatement = null;
         try {
             Connection c = db.connectDB();
-            String sql = "delete from  sanpham where id=?;";
+            String sql = "delete from product where id=?;";
             is = true;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -201,17 +201,17 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
         try {
             Connection c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
-            String sql = "SELECT * FROM sanpham WHERE tensp LIKE ?";
+            String sql = "SELECT * FROM product WHERE name LIKE ?";
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, "%" + name + "%");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Product u = new Product();
                 u.setId(rs.getInt(1));
-                u.setTen(rs.getString(2));
-                u.setGia(rs.getInt(3));
-                u.setAnh(rs.getString(4));
-                u.setMota(rs.getString(5));
+                u.setName(rs.getString(2));
+                u.setPrice(rs.getInt(3));
+                u.setImg(rs.getString(4));
+                u.setDescription(rs.getString(5));
                 u.setIdType(rs.getInt(6));
                 list.add(u);
             }
@@ -229,17 +229,17 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
         try {
             Connection c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
-            String sql = " select * from sanpham where id_type =?; ";
+            String sql = " select * from product where id_type =?; ";
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, idType);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Product u = new Product();
                 u.setId(rs.getInt(1));
-                u.setTen(rs.getString(2));
-                u.setGia(rs.getInt(3));
-                u.setAnh(rs.getString(4));
-                u.setMota(rs.getString(5));
+                u.setName(rs.getString(2));
+                u.setPrice(rs.getInt(3));
+                u.setImg(rs.getString(4));
+                u.setDescription(rs.getString(5));
                 u.setIdType(rs.getInt(6));
                 list.add(u);
             }

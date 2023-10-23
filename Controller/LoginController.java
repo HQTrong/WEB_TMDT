@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -45,8 +46,8 @@ public class LoginController extends HttpServlet {
         try {
             user = servive.getUser(username);
             if (user.getUser()!=null) {
-                if (user.getPass().equals(pass)) {
-                    if (user.getPhanQuyen()!=null) {
+                if (BCrypt.checkpw(pass,user.getPass())) {
+                    if (user.getRole()!=null) {
                         list = productService.getProduct();
                         session.setAttribute("user", username);
                         req.setAttribute("list", list);

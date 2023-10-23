@@ -1,54 +1,38 @@
 package com.example.tmdt.Model.POJO;
 
 public class Cart {
-    private int idCart;
-    private int idDonHang;
+    private int id;
+    private int idOrder;
     private int idProduct;
-    private  int giasp;
-    private  String tensp;
-    private int soLuong;
+    private  int price;
+    private  String name;
+    private int quantity;
     public Cart() {
     }
 
-    public Cart(int idCart, int idDonHang, int idProduct, int giasp, String tensp,int soLuong) {
-        this.idCart = idCart;
-        this.idDonHang = idDonHang;
+    public Cart(int id, int idOrder, int idProduct, int price, String name, int quantity) {
+        this.id = id;
+        this.idOrder = idOrder;
         this.idProduct = idProduct;
-        this.giasp = giasp;
-        this.tensp=tensp;
-        this.soLuong=soLuong;
+        this.price = price;
+        this.name = name;
+        this.quantity = quantity;
     }
 
-    public int getSoLuong() {
-        return soLuong;
+    public int getId() {
+        return id;
     }
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getTensp() {
-        return tensp;
+    public int getIdOrder() {
+        return idOrder;
     }
 
-    public void setTensp(String tensp) {
-        this.tensp = tensp;
-    }
-
-    public int getGiasp() {
-        return giasp;
-    }
-
-    public void setGiasp(int giasp) {
-        this.giasp = giasp;
-    }
-
-    public int getIdCart() {
-        return idCart;
-    }
-
-    public void setIdCart(int idCart) {
-        this.idCart = idCart;
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
     public int getIdProduct() {
@@ -59,11 +43,27 @@ public class Cart {
         this.idProduct = idProduct;
     }
 
-    public int getIdDonHang() {
-        return idDonHang;
+    public int getPrice() {
+        return price;
     }
 
-    public void setIdDonHang(int idDonHang) {
-        this.idDonHang = idDonHang;
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

@@ -82,7 +82,7 @@
         <label>Loại sản phẩm: </label>
         <select name="idType">
             <c:forEach items="${list}" var ="sp">
-                <option value="${sp.id}" >${sp.loaisp}</option>
+                <option value="${sp.id}" >${sp.typeName}</option>
             </c:forEach>
         </select>
   <br>

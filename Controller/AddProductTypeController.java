@@ -1,7 +1,7 @@
 package com.example.tmdt.Controller;
 
-import com.example.tmdt.Model.POJO.CategoryType;
-import com.example.tmdt.Model.Service.CategoryService;
+import com.example.tmdt.Model.POJO.ProductType;
+import com.example.tmdt.Model.Service.ProductTypeService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,15 +15,15 @@ import java.util.List;
 
 @WebServlet(name="Add Type Product", value = "/addtype")
 public class AddProductTypeController extends HttpServlet {
-    CategoryService categoryService = new CategoryService();
-  CategoryType categoryType= new CategoryType();
+    ProductTypeService productTypeService = new ProductTypeService();
+  ProductType productType = new ProductType();
 
     String status="";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            List<CategoryType> list = null;
-            list= categoryService.getCategoryType();
+            List<ProductType> list = null;
+            list= productTypeService.getProductType();
             req.setAttribute("list",list);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -33,7 +33,7 @@ public class AddProductTypeController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<CategoryType> list = new ArrayList<>();
+        List<ProductType> list = new ArrayList<>();
         try {
         String loaisp = req.getParameter("loaisp");
 
@@ -43,10 +43,10 @@ public class AddProductTypeController extends HttpServlet {
         }
         else
         {
-            categoryType=categoryService.getCategoryByName(loaisp);
-            if( categoryType.getLoaisp() == null)
+            productType = productTypeService.getProductTypeByName(loaisp);
+            if( productType.getTypeName() == null)
             {
-                boolean is = categoryService.insertProducTypet(loaisp);
+                boolean is = productTypeService.insertProductType(loaisp);
                 if(is)
                 {
                     status="Thêm thành công.";
@@ -61,7 +61,7 @@ public class AddProductTypeController extends HttpServlet {
             {
                 status="Loại sản phẩm đã tồn tại";
             }
-            list= categoryService.getCategoryType();
+            list= productTypeService.getProductType();
         }
         } catch (SQLException e) {
             throw new RuntimeException(e);

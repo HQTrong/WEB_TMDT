@@ -4,16 +4,16 @@ public class Order {
     private  int id;
     private  int idCustomer;
 
-    private  int thanhTien;
+    private  int total;
 
 
     public Order() {
     }
 
-    public Order(int id,int idCustomer, int thanhTien) {
+    public Order(int id, int idCustomer, int total) {
         this.id = id;
-        this.idCustomer= idCustomer;
-        this.thanhTien = thanhTien;
+        this.idCustomer = idCustomer;
+        this.total = total;
     }
 
     public int getIdCustomer() {
@@ -32,11 +32,11 @@ public class Order {
         this.id = id;
     }
 
-    public int getThanhTien() {
-        return thanhTien;
+    public int getTotal() {
+        return total;
     }
 
-    public void setThanhTien(int thanhTien) {
-        this.thanhTien = thanhTien;
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

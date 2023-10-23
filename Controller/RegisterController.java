@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ public class RegisterController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String  username= req.getParameter("username");
-            String pass=req.getParameter("pass");
+            String pass = BCrypt.hashpw(req.getParameter("pass"), BCrypt.gensalt(10));
             String email= req.getParameter("email");
             if(username=="" || pass==""||email=="")
             {

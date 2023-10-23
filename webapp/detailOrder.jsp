@@ -30,6 +30,12 @@
             margin-left: 700px;
             color: blue;
         }
+        thead{
+            background: lightsteelblue;
+        }
+        .table.table-striped tbody tr:hover{
+            background: gainsboro;
+        }
     </style>
     <script type="text/javascript"></script>
 </head>
@@ -40,6 +46,7 @@
     <p>Số điện thoại: ${phone}</p>
     <p>Địa chỉ: ${address}</p>
     <table style="margin-top: 20px;">
+        <thead>
         <tr>
             <th>ID giỏ hàng</th>
             <th>ID đơn hàng</th>
@@ -48,21 +55,24 @@
             <th>Giá sản phẩm</th>
             <th>Số lượng</th>
         </tr>
+        </thead>
+        <tbody>
         <c:choose>
         <c:when test="${list!=null}">
         <c:forEach items="${list}" var="sp" >
-            <c:set var="total" value="${total + sp.giasp*sp.soLuong}" />
+            <c:set var="total" value="${total + sp.price*sp.quantity}" />
             <tr>
-                <td>${sp.idCart}</td>
-                <td>${sp.idDonHang}</td>
+                <td>${sp.id}</td>
+                <td>${sp.idOrder}</td>
                 <td>${sp.idProduct}</td>
-                <td>${sp.tensp}</td>
-                <td>${sp.giasp}</td>
-                <td>${sp.soLuong}</td>
+                <td>${sp.name}</td>
+                <td>${sp.price}</td>
+                <td>${sp.quantity}</td>
             </tr>
         </c:forEach>
         </c:when>
         </c:choose>
+        </tbody>
     </table>
 
     <p style="font-size: 30px;"><b>Số tiền đã thanh toán: ${total} đồng</b></p>

@@ -5,25 +5,25 @@ public class Account {
     private String user;
     private String pass;
     private  String email;
-    private  String phanQuyen;
+    private  String role;
 
     public Account() {
     }
 
-    public Account(int id, String user, String pass,  String email,String phanQuyen) {
+    public Account(int id, String user, String pass,  String email,String role) {
         this.id = id;
         this.user = user;
         this.pass = pass;
         this.email = email;
-        this.phanQuyen=phanQuyen;
+        this.role=role;
     }
 
-    public String getPhanQuyen() {
-        return phanQuyen;
+    public String getRole() {
+        return role;
     }
 
-    public void setPhanQuyen(String phanQuyen) {
-        this.phanQuyen = phanQuyen;
+    public void setRole(String role) {
+        this.role = role;
     }
 
 

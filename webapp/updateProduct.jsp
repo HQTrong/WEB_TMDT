@@ -72,19 +72,19 @@
         <input type="text" placeholder="" name="id" value="${product.id}" readonly/>
 
         <label>Tên sản phẩm: </label>
-        <input type="text" placeholder="" name="tensp" value="${product.ten}"/>
+        <input type="text" placeholder="" name="tensp" value="${product.name}"/>
 
         <label>Giá sản phẩm: </label>
-        <input type="text" name="giasp" value="${product.gia}">
+        <input type="text" name="giasp" value="${product.price}">
 
         <label> Ảnh: </label>
-        <input type="text" name="anh" value="${product.anh}">
+        <input type="text" name="anh" value="${product.img}">
         <label> Mô tả: </label>
-        <input type="text" name="mota" value="${product.mota}">
+        <input type="text" name="mota" value="${product.description}">
         <label>Loại sản phẩm: </label>
         <select name="idType">
             <c:forEach items="${list}" var ="sp">
-                <option value="${sp.id}" >${sp.loaisp}</option>
+                <option value="${sp.id}" >${sp.typeName}</option>
             </c:forEach>
         </select>
         <br>
