@@ -199,7 +199,10 @@
       {
         alert("Vui lòng điền đầy đủ thông tin giao hàng");
       }
-      else
+      else if(phone.length != 10)
+      {
+        alert("Số điện thoại không hợp lệ");
+      }else
       {
         alert("Mua hàng thành công");
         calculateTotal();

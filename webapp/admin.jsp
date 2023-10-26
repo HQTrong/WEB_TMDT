@@ -54,19 +54,21 @@
     <button style="background-color: blue;"><a href="complaint"><b>Góp ý của KH</b></a></button>
     <button style="background-color: blue;"><a href="addtype"><b>Thêm loại SP</b></a></button>
     <table style="margin-top: 20px;" class ="table table-blue table-striped">
+
+        <tbody>
+        <c:choose>
+        <c:when test="${listProduct!=null}">
+        <h2>Danh sách sảm phẩm</h2>
         <thead>
         <tr>
-            <th>ID sản phẩm</th>
+            <th>ID</th>
             <th>Ảnh</th>
             <th>Tên sản phẩm</th>
             <th>Giá</th>
             <th></th>
         </tr>
         </thead>
-        <tbody>
-        <c:choose>
-        <c:when test="${list!=null}">
-        <c:forEach items="${list}" var="sp" >
+        <c:forEach items="${listProduct}" var="sp" >
             <tr>
                 <td>${sp.id}</td>
                 <td>${sp.img}</td>
@@ -82,6 +84,16 @@
         </c:forEach>
     </c:when>
     <c:when test="${product!=null}">
+        <h2>Danh sách sảm phẩm</h2>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th></th>
+        </tr>
+        </thead>
         <tr>
             <td>${product.id}</td>
             <td>${product.img}</td>
@@ -95,6 +107,91 @@
             </td>
         </tr>
     </c:when>
+        <c:when test="${listComplaint!=null}">
+        <h2>Góp ý từ khách hàng</h2>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên đăng nhập</th>
+            <th>Điện thoại</th>
+            <th>Góp ý</th>
+        </tr>
+        </thead>
+        <c:forEach items="${listComplaint}" var="com" >
+        <tr>
+            <td>${com.id}</td>
+            <td>${com.username}</td>
+            <td>${com.phone}</td>
+            <td>${com.complaint}</td>
+        </tr>
+        </c:forEach>
+        </c:when>
+
+        <c:when test="${listCustomer!=null}">
+        <h2>Danh sách khách hàng</h2>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên đăng nhập</th>
+            <th>Mật khẩu</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <c:forEach items="${listCustomer}" var="cus" >
+        <tr>
+            <td>${cus.id}</td>
+            <td>${cus.user}</td>
+            <td>${cus.pass}</td>
+            <td>${cus.email}</td>
+        </tr>
+        </c:forEach>
+        </c:when>
+
+        <c:when test="${listOrder!=null}">
+        <h2>Đơn hàng đã bán</h2>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tổng tiền</th>
+            <th></th>
+        </tr>
+        </thead>
+        <c:forEach items="${listOrder}" var="o" >
+            <c:set var="total" value="${total + o.total}" />
+        <tr>
+            <td>${o.id}</td>
+            <td>${o.total}</td>
+            <td>
+                <button style="background-color: blue;"><a href="detailorder?Id=${o.id}" style="color: white; text-decoration: none;"><b>Chi tiết</b></a>
+                </button>
+            </td>
+        </tr>
+        </c:forEach>
+        <p style="font-size: 20px;"><b>Tổng tiền: ${total} đồng</b></p>
+        </c:when>
+
+        <c:when test="${listDetailOrder!=null}">
+        <h2>Chi tiết đơn hàng ${id}</h2>
+        <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá bán</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+        </tr>
+        </thead>
+        <c:forEach items="${listDetailOrder}" var="sp" >
+            <c:set var="total" value="${total + sp.price*sp.quantity}" />
+        <tr>
+            <td>${sp.name}</td>
+            <td>${sp.price}</td>
+            <td>${sp.quantity}</td>
+            <td>${sp.quantity * sp.price}</td>
+        </tr>
+        </c:forEach>
+        <p style="font-size: 20px;"><b>Tên người nhận: ${fullname} --- Số điện thoại: ${phone} --- Địa chỉ: ${address}</b></p>
+        <p style="font-size: 20px;"><b>Số tiền đã thanh toán: ${total} đồng</b></p>
+        </c:when>
     <c:otherwise>
     </c:otherwise>
     </c:choose>

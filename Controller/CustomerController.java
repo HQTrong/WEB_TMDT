@@ -21,8 +21,8 @@ public class CustomerController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             list= accountService.getAccount();
-            req.setAttribute("list", list);
-            req.getRequestDispatcher("customer.jsp").forward(req,resp);
+            req.setAttribute("listCustomer", list);
+            req.getRequestDispatcher("admin.jsp").forward(req,resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

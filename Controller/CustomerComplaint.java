@@ -21,8 +21,8 @@ public class CustomerComplaint extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             list=complaintService.getComplaint();
-            req.setAttribute("list",list);
-            req.getRequestDispatcher("complaint.jsp").forward(req,resp);
+            req.setAttribute("listComplaint",list);
+            req.getRequestDispatcher("admin.jsp").forward(req,resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

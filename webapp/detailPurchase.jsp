@@ -112,40 +112,49 @@
     <h3 class="text" style="text-align:center;  color:red;">Chi tiết các đơn hàng đã mua</h3>
     <br>
     <center>
-<div class="container">
-    <c:forEach items="${purchase}" var="sp" varStatus="status">
-        <h4>Người nhận:${sp.fullName} --- Địa chỉ:${sp.address} --- Điện thoại:${sp.phone}</h4>
-        <br>
-        <div class="row row-cols-2 row-cols-lg-3">
-            <c:forEach items="${sp.listPurchase}" var="p" varStatus="status">
-                <div class="col-4 col-lg-2 text-center"><img src="${p.img}" style="height:100px; width: 100px;"></div>
-                <div class="col-4 col-lg-2 text-center"><p id ="myField"><b>${p.productName}</b></p></div>
-                <div class="col-4 col-lg-2 text-center"><p><b>SL: x${p.quantity}</b></p></div>
-                <div class="col-4 col-lg-2 text-center"><p><b>Giá bán: ${p.price}</b></p></div>
-                <div class="col-4 col-lg-2 text-center"><p><b>Thành tiền: ${p.price*p.quantity}</b></p></div>
-                <div class="w-100"></div>
-                <br>
+        <div class="container">
+            <c:forEach items="${purchase}" var="sp" varStatus="status">
+                    <h4>Người nhận:${sp.fullName} --- Địa chỉ:${sp.address} --- Điện thoại:${sp.phone}</h4>
+                    <br>
+                <div class="row row-cols-2 row-cols-lg-3">
+                    <c:forEach items="${sp.listPurchase}" var="p" varStatus="status">
+                        <div class="col-4 col-lg-2 text-center">
+                            <img src="${p.img}" style="height:100px; width: 100px;">
+                        </div>
+                        <div class="col-4 col-lg-2 text-center">
+                            <p id="myField"><b>${p.productName}</b></p>
+                        </div>
+                        <div class="col-4 col-lg-2 text-center">
+                            <p><b>SL: x${p.quantity}</b></p>
+                        </div>
+                        <div class="col-4 col-lg-2 text-center">
+                            <p><b>Giá bán: ${p.price}</b></p>
+                        </div>
+                        <div class="col-4 col-lg-2 text-center">
+                            <p><b>Thành tiền: ${p.price * p.quantity}</b></p>
+                        </div>
+                        <div class="w-100"></div>
+                        <br>
+                    </c:forEach>
+                </div>
+                <div class="container">
+                    <div class="row row-cols-2 row-cols-lg-3">
+                        <div class="col-4 col-lg-2"></div>
+                        <div class="col-4 col-lg-2"></div>
+                        <div class="col-4 col-lg-2"></div>
+                        <div class="col-4 col-lg-2"></div>
+                        <div class="col-4 col-lg-2">
+                            <p style="font-size: 20px;">
+                                <b>Tổng tiền: ${sp.total}</b>
+                            </p>
+                        </div>
+                        <div class="col-4 col-lg-2"></div>
+                    </div>
+                </div>
+                <hr>
             </c:forEach>
         </div>
-        <div class="container">
-            <div class="row row-cols-2 row-cols-lg-3">
-                <div class="col-4 col-lg-2"></div>
-                <div class="col-4 col-lg-2"></div>
-                <div class="col-4 col-lg-2"></div>
-                <div class="col-4 col-lg-2"></div>
-                <div class="col-4 col-lg-2">
-                    <p style="font-size: 20px;">
-                        <b>Tổng tiền: ${sp.total}</b>
-                    </p>
-                </div>
-                <div class="col-4 col-lg-2">
 
-                </div>
-            </div>
-        </div>
-        <hr>
-    </c:forEach>
-</div>
     </center>
 </div>
 </body>

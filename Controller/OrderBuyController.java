@@ -22,8 +22,8 @@ public class OrderBuyController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             list=orderService.getOrder();
-            req.setAttribute("list",list);
-            req.getRequestDispatcher("orderbuy.jsp").forward(req,resp);
+            req.setAttribute("listOrder",list);
+            req.getRequestDispatcher("admin.jsp").forward(req,resp);
         }catch (SQLException e)
         {
             throw  new RemoteException();

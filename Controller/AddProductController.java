@@ -52,7 +52,7 @@ public class AddProductController extends HttpServlet {
                     list= productService.getProduct();
                     String status = "Thêm thành công!!";
                     req.setAttribute("status", status);
-                    req.setAttribute("list", list);
+                    req.setAttribute("listProduct", list);
                     req.getRequestDispatcher("admin.jsp").forward(req, resp);
                 }else
                 {

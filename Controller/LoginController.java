@@ -28,7 +28,7 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             List<Product> list = productService.getProduct();
-            req.setAttribute("list",list);
+            req.setAttribute("listProduct",list);
             req.getRequestDispatcher("admin.jsp").forward(req,resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet {
                     if (user.getRole()!=null) {
                         list = productService.getProduct();
                         session.setAttribute("user", username);
-                        req.setAttribute("list", list);
+                        req.setAttribute("listProduct", list);
                         req.getRequestDispatcher("admin.jsp").forward(req, resp);
                     } else {
                         session.setAttribute("user", username);

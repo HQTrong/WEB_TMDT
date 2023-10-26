@@ -33,12 +33,12 @@ public class DetailOrderController extends HttpServlet {
             Order order= orderService.getOrderID(id);
             Customer customer=customerService.getCustomerByID(order.getIdCustomer());
             list= cartService.getCartByID(id);
-            req.setAttribute("list",list);
+            req.setAttribute("listDetailOrder",list);
             req.setAttribute("id",id);
             req.setAttribute("fullname",customer.getFullname());
             req.setAttribute("phone",customer.getPhone());
             req.setAttribute("address",customer.getAddress());
-            req.getRequestDispatcher("detailOrder.jsp").forward(req,resp);
+            req.getRequestDispatcher("admin.jsp").forward(req,resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -22,9 +22,6 @@ public class PurchaseController extends HttpServlet {
         try {
             list = purchaseService.getPurchase(username);
             req.setAttribute("purchase", list);
-
-            List<Purchase> l = purchaseService.getPurchase(username);
-            int a=3;
             req.getRequestDispatcher("detailPurchase.jsp").forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
