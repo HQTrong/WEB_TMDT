@@ -268,9 +268,6 @@
     calculateTotal();
   </script>
     <hr>
-        <script>
-
-        </script>
     </div>
   </div>
     </div>

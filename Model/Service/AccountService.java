@@ -25,7 +25,6 @@ public class AccountService {
 
         if ((user.getUser()) == null) {
             boolean account = dao.insertAccount(userName, pass, email);
-
             return account == true ? account : false;
         }
         return false;
@@ -34,6 +33,16 @@ public class AccountService {
     public  boolean updateAccount(String username,String password, String email) throws  SQLException{
         boolean result = dao.updateAccount(username,password,email);
         return result == true ?result: false;
+    }
+
+    public  boolean updatePassword(String password, String email) throws  SQLException{
+        boolean result = dao.updatePassword(password,email);
+        return result == true ?result: false;
+    }
+
+    public Account getEmail(String email) throws SQLException {
+        Account user = dao.getEmail(email);
+        return user != null ? user : null;
     }
 
 }

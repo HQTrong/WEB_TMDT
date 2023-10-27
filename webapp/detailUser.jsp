@@ -45,14 +45,6 @@
     #menu a{
       text-decoration: none;
     }
-    .eye{
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      max-width: 20px;
-    }
     .eye {
       position: absolute;
       right: -15px;

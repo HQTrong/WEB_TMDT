@@ -14,7 +14,6 @@ public class PurchaseService {
     PurchaseDAO dao = new PurchaseDAO();
 
     public List<Purchase> getPurchase(String username) throws SQLException {
-        //List<Purchase> purchases = new ArrayList<>();
 
         List<Purchase> purchases = dao.getPurchase(username);
 

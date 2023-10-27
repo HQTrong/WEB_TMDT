@@ -61,7 +61,7 @@
     </style>
 </head>
 <body>
-<div class="container" style="font-family: 'DejaVu Serif'; font-size: 50px;">
+<div class="container" style="font-family: 'DejaVu Serif';">
     <nav class="navbar " style="background-color:white ;">
         <div class="container">
             <a class="navbar-brand">
@@ -109,23 +109,19 @@
             </form>
         </div>
     </nav>
-</div>
-<div class="container-fluid" style="width:85%;">
-    <div class="row">
-        <div class="col">
-            <a href="home.jsp">Trang chủ/</a>
-            <a href="show">Menu</a>
-        </div>
-        <div class="col">
-        </div>
-        <div class="col">
-        </div>
-            <div class="col">
+    <div class="container-fluid" style="width:100%;">
+        <div class="row">
+            <div class="col-9">
+                <a href="home.jsp">Trang chủ/</a>
+                <a href="show">Menu</a>
+            </div>
+            <div class="col-3">
                 <form class="d-flex" action="show" method="post">
-                    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="tensp" style="max-width: 200px;padding-right: 10px;">
+                    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="tensp" style="max-width: 200px;">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
+        </div>
     </div>
 </div>
 <br>

@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountDAO {
-    postgresDB db= new postgresDB();
+    postgresDB db = new postgresDB();
+
     public Account getUser(String userName) throws SQLException {
         Account u = new Account();
         PreparedStatement preparedStatement = null;
@@ -37,6 +38,7 @@ public class AccountDAO {
         }
         return u;
     }
+
     public List<Account> getAccount() throws SQLException {
         List<Account> list = new ArrayList<>();
         Statement stmt = null;
@@ -68,8 +70,9 @@ public class AccountDAO {
         }
         return list;
     }
+
     public boolean insertAccount(String userName, String pass, String email) throws SQLException {
-       Account u = new Account();
+        Account u = new Account();
         boolean is = false;
         try {
             Connection c = db.connectDB(); // connect
@@ -95,7 +98,8 @@ public class AccountDAO {
         }
         return is;
     }
-    public boolean updateAccount(String username,String password, String email) throws SQLException {
+
+    public boolean updateAccount(String username, String password, String email) throws SQLException {
         Account account = new Account();
         PreparedStatement preparedStatement = null;
         boolean is = false;
@@ -104,9 +108,9 @@ public class AccountDAO {
             String sql = "UPDATE account SET pass=?,email =? WHERE username=?;";
             is = true;
             preparedStatement = c.prepareStatement(sql);
-            preparedStatement.setString(1,password);
-            preparedStatement.setString(2,email);
-            preparedStatement.setString(3,username);
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, username);
             ResultSet rs = preparedStatement.executeQuery();
             rs.close();
             c.close();
@@ -116,5 +120,51 @@ public class AccountDAO {
             db.closeBD();
         }
         return is;
+    }
+
+    public boolean updatePassword(String email, String password) throws SQLException {
+        Account account = new Account();
+        PreparedStatement preparedStatement = null;
+        boolean is = false;
+        try {
+            Connection c = db.connectDB();
+            String sql = "UPDATE account SET pass=? WHERE email=?;";
+            is = true;
+            preparedStatement = c.prepareStatement(sql);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.close();
+            c.close();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            db.closeBD();
+        }
+        return is;
+    }
+
+    public Account getEmail(String email) throws SQLException {
+        Account u = new Account();
+        PreparedStatement preparedStatement = null;
+        try {
+            Connection c = db.connectDB(); // connect
+            String sql = "select email from account where email=?;";
+            preparedStatement = c.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                u.setEmail(rs.getString(1));
+            }
+            rs.close();
+            c.close();
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            // bat buoc dong
+            db.closeBD();
+        }
+        return u;
     }
 }
