@@ -65,7 +65,7 @@
     <nav class="navbar " style="background-color:white ;">
         <div class="container">
             <a class="navbar-brand">
-                <img src="Image/logo.jpg" class="rounded-image" alt="Logo">
+                <img src="https://res.cloudinary.com/diey7k1oh/image/upload/v1698478704/Ecommerce/kkwn8ppkfw9v7c1s7l9m.jpg" class="rounded-image" alt="Logo">
             </a>
             <form class="d-flex" style="font-family: 'DejaVu Sans';font-size: 20px">
                 <div id="header_home">
@@ -77,7 +77,7 @@
                             <a class="nav-link" href="show">Sản phẩm</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="contact.jsp" tabindex="-1" aria-disabled="true">Liên hệ</a>
+                            <a class="nav-link " href="shop" tabindex="-1" aria-disabled="true">Liên hệ</a>
                         </li>
                         <form>
                             <div class="btn-group">

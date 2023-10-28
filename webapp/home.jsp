@@ -62,7 +62,7 @@
         <div class="container">
             <a class="navbar-brand">
 
-                <img src="Image/logo.jpg" class="rounded-image" alt="Logo">
+                <img src="https://res.cloudinary.com/diey7k1oh/image/upload/v1698478704/Ecommerce/kkwn8ppkfw9v7c1s7l9m.jpg" class="rounded-image" alt="Logo">
 
             </a>
 
@@ -77,7 +77,7 @@
                             <a class="nav-link" href="show">Sản phẩm</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="contact.jsp" tabindex="-1" aria-disabled="true">Liên hệ</a>
+                            <a class="nav-link " href="shop" tabindex="-1" aria-disabled="true">Liên hệ</a>
                         </li>
                         <form >
 
@@ -123,13 +123,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="Image/slide1.jpg" style="height:600px" class="d-block w-100" alt="slide1">
+                <img src="https://res.cloudinary.com/diey7k1oh/image/upload/v1698478705/Ecommerce/mdkgnkptdromgx68walm.jpg" style="height:600px" class="d-block w-100" alt="slide1">
             </div>
             <div class="carousel-item">
-                <img src="Image/slide2.jpg" style="height:600px" class="d-block w-100" alt="slide2">
+                <img src="https://res.cloudinary.com/diey7k1oh/image/upload/v1698478705/Ecommerce/p3tviwnpaepgp8remqgd.jpg" style="height:600px" class="d-block w-100" alt="slide2">
             </div>
             <div class="carousel-item">
-                <img src="Image/slide3.jpg" style="height:600px" class="d-block w-100" alt="slide3">
+                <img src="https://res.cloudinary.com/diey7k1oh/image/upload/v1698478705/Ecommerce/s13f7lvzpuw48dz9ccak.jpg" style="height:600px" class="d-block w-100" alt="slide3">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

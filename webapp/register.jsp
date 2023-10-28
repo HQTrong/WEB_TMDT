@@ -33,7 +33,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <img src="Image/register.jpg" style="height:715px;">
+            <img src="https://res.cloudinary.com/diey7k1oh/image/upload/v1698478705/Ecommerce/m4mfmj1hpeihdtawauni.jpg" style="height:715px;">
         </div>
         <div class="col-sm-8" style="background-color: white; padding-top: 80px;">
             <br><br><br>

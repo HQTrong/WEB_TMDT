@@ -49,7 +49,15 @@ create table categorytype(
 	nametype varchar(50),
 	foreign key (idproduct) references product(id)
 );
-
+create table shop(
+	id serial not null primary key,
+	address varchar(1000),
+	time varchar(20),
+	openday varchar(20));
+drop table shop;
+insert into shop(address,time, openday) values ('47/27, Đường 42, KP8 , Phường Hiệp Bình Chánh, TP Thủ Đức, TP Hồ Chí Minh', '08:00 AM - 23:00 PM','Thứ 2 - Thứ 7')
+select * from SHOP
+update shop set openday='Thứ 2 - Thứ 7' where id =1
 insert into product(id,name,price,img,description)
 values(1,'Cafe',10000,'Image/cafe.jpg','Là sự lựa chọn hoàn hảo cho những ai yêu thích cà phê nhưng lại không thích vị đắng nguyên bản của cà phê đen truyền thống. Hương vị cà phê mang dấu ấn sáng tạo rất Việt Nam. Cái khéo trong sự kết hợp giữa các nguyên liệu cao cấp: cà phê phin, sữa béo và sữa đặc cho ra đời một thức uống tròn vị đắng, ngọt, bùi. Vị ngọt thấm vào đầu lưỡi, vị đắng lắng đọng nơi cuống họng vừa đủ để người thưởng thức tỉnh táo suốt cả ngày dài.'),
 	(2,'Sinh tố',10000,'Image/sinhto.jpg','Sinh tố dâu là món được chế biến từ quả dâu tây kết hợp cùng với đá, sữa và đường. Dâu tây là một loại cây thuộc họ thân thảo sống nhiều năm. Cây dâu tây có rất nhiều là và thường mọc gần nhau, tùy vào từng môi trường mà loại cây này sinh sống hoặc tùy đặc tính của từng giống cây mà dâu tây có các đặc điểm khác nhau. Nhưng hầu hết các giống dâu tây đều có lá kép, mép lá có răng cưa, quả dâu tây khi còn non có màu trắng và khi quả già thì chuyển màu đỏ đất.');
@@ -71,4 +79,5 @@ values('dds',200,'','');
 insert into product(id,name,price,img,description)
 values	(7,'Trà tắc',10000,'Image/tratac.jpg','Trà tắc xí muội là sự kết hợp tuyệt vời giữa trà tắc thơm ngon và xí muội chua ngọt. Với hương vị độc đáo và màu sắc hấp dẫn trà tắc xí muội là lựa chọn hoàn hảo cho những ai yêu thích trà và muốn thưởng thức một loại đồ uống mới lạ. Chất lượng tuyệt vời và giá cả hợp lý trà tắc xí muội sẽ làm hài lòng cả những thực khách khó tính nhất. Hãy đến và thưởng thức ngay hôm nay!');
 
-
+update product set id =13 where id =35
+select * from product 

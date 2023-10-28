@@ -49,7 +49,7 @@ public class UpdateProductController extends HttpServlet {
             boolean product = productService.updateProduct(tensp,giasp,anh,mota,id,idType);
             if (product) {
                 List<Product> list = productService.getProduct();
-                req.setAttribute("list", list);
+                req.setAttribute("listProduct", list);
                 req.getRequestDispatcher("admin.jsp").forward(req, resp);
             }
         } catch (SQLException e) {

@@ -82,7 +82,7 @@
     <div class="container">
       <a class="navbar-brand">
 
-        <img src="Image/logo.jpg" class="rounded-image" alt="Logo">
+        <img src="https://res.cloudinary.com/diey7k1oh/image/upload/v1698478704/Ecommerce/kkwn8ppkfw9v7c1s7l9m.jpg" class="rounded-image" alt="Logo">
 
       </a>
 
@@ -91,7 +91,7 @@
           <ul class="nav justify-content-center">
 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="home.jsp">Trang chủ</a>
+              <a class="nav-link active" aria-current="page" href="shop">Trang chủ</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="show">Sản phẩm</a>

@@ -40,7 +40,7 @@
 <body style="background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm222batch5-kul-03.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=08fbfb223887d33030e97becaf4e20dc); background-repeat: no-repeat; background-size:100%;">
 <center style="padding-top: 30px">
     <h1>CHÀO MỪNG BẠN ĐẾN VỚI TRANG ADMIN</h1>
-    <h3>${status}</h3>
+
     <form method="post" action="search">
         <label>ID sản phẩm: </label>
         <input type="text" placeholder="" name="product_id"/>
@@ -53,9 +53,11 @@
     <button style="background-color: blue;"><a href="orderbuy"><b>Đơn hàng đã bán</b></a></button>
     <button style="background-color: blue;"><a href="complaint"><b>Góp ý của KH</b></a></button>
     <button style="background-color: blue;"><a href="addtype"><b>Thêm loại SP</b></a></button>
+    <button style="background-color: blue;"><a href="updateshop"><b>Địa chỉ</b></a></button>
     <table style="margin-top: 20px;" class ="table table-blue table-striped">
 
         <tbody>
+        <h3>${status}</h3>
         <c:choose>
         <c:when test="${listProduct!=null}">
         <h2>Danh sách sảm phẩm</h2>
@@ -191,6 +193,38 @@
         </c:forEach>
         <p style="font-size: 20px;"><b>Tên người nhận: ${fullname} --- Số điện thoại: ${phone} --- Địa chỉ: ${address}</b></p>
         <p style="font-size: 20px;"><b>Số tiền đã thanh toán: ${total} đồng</b></p>
+        </c:when>
+        <c:when test="${shop!=null}">
+        <h2>Cập nhật địa chỉ cửa hàng</h2>
+        <form action="shop" method="post">
+
+            <thead>
+            <tr>
+                <th>
+                    <label  class="form-label">ID</label>
+                </th>
+                <th>
+                    <label  class="form-label">Địa chỉ</label>
+                </th>
+                <th>
+                    <label  class="form-label">Thời gian mở cửa</label>
+                </th>
+
+                <th>
+                   <label  class="form-label">Ngày mở cửa</label>
+                </th>
+            </tr>
+            </thead>
+            <tr >
+                <td><input type="text" class="form-label"  name="id" value="${shop.id}" style="border: none; width: 20px; " ></td>
+                <td><input type="text" class="form-label"  name="address" value="${shop.address}" style="border: none; width: 500px; "></td>
+                <td><input type="text" class="form-label" name="time" value="${shop.time}" style="border: none; width: 130px; "></td>
+                <td><input type="text"  class="form-label" name="day" value="${shop.day}"  style="border: none; width: 90px; "></td>
+                <td><button style="color: white; background-color: blue; width:auto; height: auto"><b>UPDATE</b></button></td>
+            </tr>
+
+        </form>
+
         </c:when>
     <c:otherwise>
     </c:otherwise>

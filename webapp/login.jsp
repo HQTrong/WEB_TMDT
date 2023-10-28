@@ -30,7 +30,7 @@
   </style>
 </head>
 
-<body style="background-image: url(Image/login.jpg); background-repeat:no-repeat; background-size: 100%;">
+<body style="background-image: url(https://res.cloudinary.com/diey7k1oh/image/upload/v1698478704/Ecommerce/lzk48eta20sft6pqspix.jpg); background-repeat:no-repeat; background-size: 100%;">
 <div class="container">
   <br> <br> <br>
   <h1  style="text-align: center; font-size: 40px;">ĐĂNG NHẬP</h1>

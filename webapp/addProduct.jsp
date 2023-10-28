@@ -66,7 +66,7 @@
 </head>
 <body style="background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm222batch5-kul-03.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=08fbfb223887d33030e97becaf4e20dc); background-repeat: no-repeat; background-size:100%;">
 <h2>Thêm sản phẩm</h2>
-<form action="add" method="post">
+<form action="add" method="post" enctype="multipart/form-data" >
     <div class="add">
         <label>Tên sản phẩm: </label>
         <input type="text" placeholder="" name="tensp"/>
@@ -75,13 +75,13 @@
         <input type="text" name="giasp">
 
         <label> Ảnh: </label>
-        <input type="text" name="anh">
+        <input type="file" size="50" name="anh">
 
         <label>Mô tả: </label>
         <input type="text" name="mota">
         <label>Loại sản phẩm: </label>
         <select name="idType">
-            <c:forEach items="${list}" var ="sp">
+            <c:forEach items="${listProductType}" var ="sp">
                 <option value="${sp.id}" >${sp.typeName}</option>
             </c:forEach>
         </select>

@@ -57,7 +57,7 @@
         <div class="container">
             <a class="navbar-brand">
 
-                <img src="Image/logo.jpg" style="width:130px; height:100px;" class="img-fluid" alt="Logo">
+                <img src="https://res.cloudinary.com/diey7k1oh/image/upload/v1698478704/Ecommerce/kkwn8ppkfw9v7c1s7l9m.jpg" style="width:130px; height:100px;" class="img-fluid" alt="Logo">
 
             </a>
 
@@ -72,7 +72,7 @@
                             <a class="nav-link" href="show">Sản phẩm</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="contact.jsp" tabindex="-1" aria-disabled="true">Liên hệ</a>
+                            <a class="nav-link " href="shop" tabindex="-1" aria-disabled="true">Liên hệ</a>
                         </li>
                         <form >
 

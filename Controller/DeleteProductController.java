@@ -25,7 +25,7 @@ public class DeleteProductController extends HttpServlet {
             boolean is = productService.removeProduct(id);
             if (is) {
                 list= productService.getProduct();
-                req.setAttribute("list", list);
+                req.setAttribute("listProduct", list);
                 req.getRequestDispatcher("admin.jsp").forward(req, resp);
             }
 

@@ -35,7 +35,7 @@
                             <a class="nav-link" href="show">Sản phẩm</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="contact.jsp" tabindex="-1" aria-disabled="true">Liên hệ</a>
+                            <a class="nav-link " href="shop" tabindex="-1" aria-disabled="true">Liên hệ</a>
                         </li>
                         <form>
                             <div class="btn-group">
