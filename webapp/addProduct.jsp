@@ -24,10 +24,9 @@
         }
 
         .add {
-            display: flex;
-            justify-content: flex-start;
-            flex-direction: column;
-            padding-left: 45%;
+            padding-top: 15px;;
+            padding-left: 15%;
+            padding-right: 15%;
         }
 
         label, input,option,select {
@@ -46,7 +45,7 @@
             width: 200px;
             text-align: center;
             font-size: 20px;
-            margin-left: 50px;
+            margin-left: 10px;
         }
 
         h2 {
@@ -62,6 +61,11 @@
             font-size: 25px;
             color: blue;
         }
+        textarea{
+            width: 1010px;
+            height: 100px;
+            resize: none;
+        }
     </style>
 </head>
 <body style="background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm222batch5-kul-03.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=08fbfb223887d33030e97becaf4e20dc); background-repeat: no-repeat; background-size:100%;">
@@ -74,18 +78,24 @@
         <label>Giá sản phẩm: </label>
         <input type="text" name="giasp">
 
-        <label> Ảnh: </label>
-        <input type="file" size="50" name="anh">
-
-        <label>Mô tả: </label>
-        <input type="text" name="mota">
         <label>Loại sản phẩm: </label>
         <select name="idType">
             <c:forEach items="${listProductType}" var ="sp">
                 <option value="${sp.id}" >${sp.typeName}</option>
             </c:forEach>
         </select>
-  <br>
+        <br>
+        <br>
+        <label> Ảnh: </label>
+        <input type="file" size="200" name="anh" style="width: auto;">
+        <br>
+        <br>
+        <label>Mô tả: </label>
+        <br>
+        <textarea type="text"  name="mota" style="height: 100px;" ></textarea>
+
+        <br>
+        <br>
         <button style="color: white; background-color: blue; width: 100px; height: 30px"><b>ADD</b></button>
     </div>
     <center>

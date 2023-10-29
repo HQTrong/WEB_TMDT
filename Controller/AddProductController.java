@@ -68,7 +68,7 @@ public class AddProductController extends HttpServlet {
             String giasp = req.getParameter("giasp");
             String mota = req.getParameter("mota");
             int idType= Integer.parseInt(req.getParameter("idType"));
-            Part filePart = req.getPart("anh"); // Lấy phần tải lên ảnh
+            Part filePart = req.getPart("anh");
             if(!tensp.isEmpty() || !giasp.isEmpty() || !mota.isEmpty()) {
 
                 String contentType = filePart.getContentType();
@@ -78,10 +78,8 @@ public class AddProductController extends HttpServlet {
                         is.read(fileBytes);
                     }
 
-                    // Define the folder where you want to store the images in Cloudinary
-                    String folder = "Ecommerce/"; // Replace with your desired folder name
+                    String folder = "Ecommerce/";
 
-                    // Perform image upload to Cloudinary with a unique public ID and specify the folder
                     Map<?, ?> uploadResult = cloudinary.uploader().upload(fileBytes,
                             ObjectUtils.asMap("public_id", folder + "unique_id_for_uploaded_image"));
                     String imageUrl = (String) uploadResult.get("url");
