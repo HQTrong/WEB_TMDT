@@ -78,10 +78,10 @@ public class AddProductController extends HttpServlet {
                         is.read(fileBytes);
                     }
 
-                    String folder = "Ecommerce/";
+                    String folder = "Ecommerce/" + UUID.randomUUID().toString();;
 
                     Map<?, ?> uploadResult = cloudinary.uploader().upload(fileBytes,
-                            ObjectUtils.asMap("public_id", folder + "unique_id_for_uploaded_image"));
+                            ObjectUtils.asMap("public_id", folder);
                     String imageUrl = (String) uploadResult.get("url");
 
                     boolean is = productService.insertProduct(tensp, Integer.parseInt(giasp), imageUrl, mota, idType);
