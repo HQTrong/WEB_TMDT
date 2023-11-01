@@ -79,7 +79,7 @@
                 <td>
                     <button style="background-color: blue;"><a href="update?Id=${sp.id}"><b>Update</b></a>
                     </button>
-                    <button style="background-color: red;"><a href="#" onclick="ShowMess('${sp.id}')"><b>Delete</b></a>
+                    <button style="background-color: red;"><a href="#" onclick="ShowMess('${sp.id},${sp.img}')"><b>Delete</b></a>
                     </button>
                 </td>
             </tr>
@@ -104,7 +104,7 @@
             <td>
                 <button style="background-color: blue;"><a
                         href="update?Id=${product.id}"><b>Update</b></a></button>
-                <button style="background-color: red;"><a href="#" onclick="ShowMess('${product.id}')"><b>Delete</b></a>
+                <button style="background-color: red;"><a href="#" onclick="ShowMess('${product.id},${product.img}')"><b>Delete</b></a>
                 </button>
             </td>
         </tr>
@@ -238,10 +238,10 @@
 </svg> </a>
 </body>
 <script type="text/javascript">
-    function ShowMess(id) {
+    function ShowMess(id,img) {
         var option = confirm('Bạn có đồng ý xóa sản phẩm!!');
         if (option === true) {
-            window.location.href = 'remove?Id=' + id;
+            window.location.href = "remove?Id=" + id + "&img=" + img;
         }
     }
 
