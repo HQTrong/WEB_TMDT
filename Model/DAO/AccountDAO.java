@@ -9,12 +9,13 @@ import java.util.List;
 
 public class AccountDAO {
     postgresDB db = new postgresDB();
+    Connection c = null;
 
     public Account getUser(String userName) throws SQLException {
         Account u = new Account();
         PreparedStatement preparedStatement = null;
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             String sql = "select * from account where username=?;";
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, userName);
@@ -44,7 +45,7 @@ public class AccountDAO {
         Statement stmt = null;
 
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             stmt = c.createStatement();
 
             String sql = "select * from account;";
@@ -73,26 +74,30 @@ public class AccountDAO {
 
     public boolean insertAccount(String userName, String pass, String email) throws SQLException {
         Account u = new Account();
+        PreparedStatement preparedStatement = null;
         boolean is = false;
+
         try {
-            Connection c = db.connectDB(); // connect
+            c = db.connectDB(); // connect
             String sql = "insert into account(username,pass,email)" + "values (?,?,?);";
-            PreparedStatement preparedStatement = null;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, pass);
             preparedStatement.setString(3, email);
-            is = true;
-            ResultSet rs = preparedStatement.executeQuery();
-            preparedStatement.executeUpdate(sql);
-
-            rs.close();
-            c.close();
-
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                is = true;
+            }
 
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (c != null) {
+                c.close();
+            }
             // bat buoc dong
             db.closeBD();
         }
@@ -104,19 +109,26 @@ public class AccountDAO {
         PreparedStatement preparedStatement = null;
         boolean is = false;
         try {
-            Connection c = db.connectDB();
+            c = db.connectDB();
             String sql = "UPDATE account SET pass=?,email =? WHERE username=?;";
-            is = true;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, password);
             preparedStatement.setString(2, email);
             preparedStatement.setString(3, username);
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.close();
-            c.close();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                is = true;
+            }
+
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (c != null) {
+                c.close();
+            }
             db.closeBD();
         }
         return is;
@@ -127,18 +139,25 @@ public class AccountDAO {
         PreparedStatement preparedStatement = null;
         boolean is = false;
         try {
-            Connection c = db.connectDB();
+            c= db.connectDB();
             String sql = "UPDATE account SET pass=? WHERE email=?;";
             is = true;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(2, password);
             preparedStatement.setString(1, email);
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.close();
-            c.close();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                is = true;
+            }
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (c != null) {
+                c.close();
+            }
             db.closeBD();
         }
         return is;

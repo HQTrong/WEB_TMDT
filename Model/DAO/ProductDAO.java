@@ -9,12 +9,13 @@ import java.util.List;
 
 public class ProductDAO {
     postgresDB db = new postgresDB();
+    Connection c =null;
     public List<Product> getProduct() throws SQLException {
         List<Product> list = new ArrayList<>();
         Statement stmt = null;
 
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             stmt = c.createStatement();
 
             String sql = "select * from product order by id asc ;";
@@ -36,6 +37,7 @@ public class ProductDAO {
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+
             // bat buoc dong
             db.closeBD();
         }
@@ -124,26 +126,31 @@ public  Product getProductByName_ID(String name, int ID) throws SQLException{
 }
 public boolean insertProduct(String tensp, int giasp, String anh, String mota, int idType) throws SQLException {
         boolean is = false;
+    PreparedStatement preparedStatement = null;
         try {
-            Connection c = db.connectDB(); // connect
+            c = db.connectDB(); // connect
             String sql = "insert into product(name,price,img,description,id_type)" + "values (?,?,?,?,?);";
-            PreparedStatement preparedStatement = null;
+
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, tensp);
             preparedStatement.setInt(2, giasp);
             preparedStatement.setString(3, anh);
             preparedStatement.setString(4, mota);
             preparedStatement.setInt(5, idType);
-            is = true;
-            ResultSet rs = preparedStatement.executeQuery();
-            preparedStatement.executeUpdate(sql);
-
-            rs.close();
-            c.close();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                is = true;
+            }
 
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (c != null) {
+                c.close();
+            }
             db.closeBD();
         }
         return is;
@@ -152,12 +159,12 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
         Product product = new Product();
         PreparedStatement preparedStatement = null;
         boolean is = false;
+
         try {
-            Connection c = db.connectDB();
+            c = db.connectDB();
             String sql = "UPDATE product\n" +
                     "SET name=?,price =?,img=?,description =?, id_type=?\n" +
                     "WHERE id=?;";
-            is = true;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, tensp);
             preparedStatement.setInt(2, giasp);
@@ -165,12 +172,19 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
             preparedStatement.setString(4, mota);
             preparedStatement.setInt(5, idType);
             preparedStatement.setInt(6, id);
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.close();
-            c.close();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                is = true;
+            }
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (c != null) {
+                c.close();
+            }
             db.closeBD();
         }
         return is;
@@ -178,19 +192,26 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
     public boolean removeProduct(int id) throws SQLException {
         boolean is = false;
         PreparedStatement preparedStatement = null;
+
         try {
-            Connection c = db.connectDB();
+            c = db.connectDB();
             String sql = "delete from product where id=?;";
-            is = true;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, id);
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.close();
-            c.close();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                is = true;
+            }
 
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (c != null) {
+                c.close();
+            }
             // bat buoc dong
             db.closeBD();
         }
@@ -199,7 +220,7 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
     public List<Product> getProductName(String name) throws SQLException {
         List<Product> list = new ArrayList<>();
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
             String sql = "SELECT * FROM product WHERE name LIKE ?";
             preparedStatement = c.prepareStatement(sql);
@@ -227,7 +248,7 @@ public boolean insertProduct(String tensp, int giasp, String anh, String mota, i
     public List<Product> getProductByIdType(int idType) throws SQLException {
         List<Product> list = new ArrayList<>();
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
             String sql = " select * from product where id_type =?; ";
             preparedStatement = c.prepareStatement(sql);

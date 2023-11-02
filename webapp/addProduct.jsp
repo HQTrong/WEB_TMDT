@@ -34,6 +34,7 @@
             width: 200px;
             text-align: left;
             font-size: 20px;
+            font-family: "Times New Roman";
         }
 
         label {

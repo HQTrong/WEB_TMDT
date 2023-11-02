@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @WebServlet(name = "AddProduct", value = "/add")
 @MultipartConfig
@@ -78,10 +79,10 @@ public class AddProductController extends HttpServlet {
                         is.read(fileBytes);
                     }
 
-                    String folder = "Ecommerce/" + UUID.randomUUID().toString();;
+                    String folder = "Ecommerce/" + UUID.randomUUID().toString();
 
                     Map<?, ?> uploadResult = cloudinary.uploader().upload(fileBytes,
-                            ObjectUtils.asMap("public_id", folder);
+                            ObjectUtils.asMap("public_id", folder));
                     String imageUrl = (String) uploadResult.get("url");
 
                     boolean is = productService.insertProduct(tensp, Integer.parseInt(giasp), imageUrl, mota, idType);

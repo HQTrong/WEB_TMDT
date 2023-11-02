@@ -21,4 +21,8 @@ public class ProductTypeService {
       ProductType category= dao.getProductTypeByName(loaisp);
         return  category != null ? category : null;
     }
+    public  boolean updateProductType(int id, String name) throws  SQLException{
+        boolean result = dao.updateProductType(id,name);
+        return result==true ?result: false;
+    }
 }

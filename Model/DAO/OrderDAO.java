@@ -9,27 +9,32 @@ import java.util.List;
 
 public class OrderDAO {
     postgresDB db = new postgresDB();
+    Connection c = null;
     public boolean insertOrder( int thanhTien, int idCustomer) throws SQLException {
         Order u = new Order();
+        PreparedStatement preparedStatement = null;
         boolean is = false;
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             String sql = "insert into tborder(total,id_customer)" + "values (?,?);";
-            PreparedStatement preparedStatement = null;
+
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1, thanhTien);
             preparedStatement.setInt(2, idCustomer);
-            is = true;
-            ResultSet rs = preparedStatement.executeQuery();
-            preparedStatement.executeUpdate(sql);
-
-            rs.close();
-            c.close();
-
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                is = true;
+            }
 
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (c != null) {
+                c.close();
+            }
             // bat buoc dong
             db.closeBD();
         }
@@ -40,7 +45,7 @@ public class OrderDAO {
         Statement stmt = null;
 
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             stmt = c.createStatement();
 
             String sql = "select * from tborder;";
@@ -68,7 +73,7 @@ public class OrderDAO {
         Statement stmt = null;
         Order u = new Order();
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
             String sql = " select * from tborder where id =?; ";
             preparedStatement = c.prepareStatement(sql);

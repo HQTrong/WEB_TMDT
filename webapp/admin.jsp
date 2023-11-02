@@ -25,15 +25,10 @@
         thead{
             background: lightsteelblue;
         }
-        /*.table.table-blue{*/
-        /*    background: lightsteelblue;*/
-        /*}*/
-        /*.table.table-striped tbody tr:nth-child(odd){*/
-        /*    background: white;*/
-        /*}*/
         table.table-striped tbody tr:hover{
             background: gainsboro;
         }
+
     </style>
     <script type="text/javascript"></script>
 </head>
@@ -224,7 +219,6 @@
             </tr>
 
         </form>
-
         </c:when>
     <c:otherwise>
     </c:otherwise>

@@ -9,26 +9,31 @@ import java.util.List;
 
 public class ComplaintDAO {
     postgresDB db = new postgresDB();
+    Connection c = null;
     public boolean insertComplaint(String username,String phone, String complaint) throws SQLException {
         boolean is = false;
+        PreparedStatement preparedStatement = null;
         try {
-            Connection c = db.connectDB(); // connect
+            c = db.connectDB(); // connect
             String sql = "insert into comment(username,phone,comment)" + "values (?,?,?);";
-            PreparedStatement preparedStatement = null;
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2,phone);
             preparedStatement.setString(3, complaint);
-            is = true;
-            ResultSet rs = preparedStatement.executeQuery();
-            preparedStatement.executeUpdate(sql);
-
-            rs.close();
-            c.close();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                is = true;
+            }
 
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (c != null) {
+                c.close();
+            }
             db.closeBD();
         }
         return is;
@@ -38,7 +43,7 @@ public class ComplaintDAO {
         Statement stmt = null;
 
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             stmt = c.createStatement();
 
             String sql = "select * from comment;";

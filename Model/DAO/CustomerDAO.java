@@ -9,27 +9,33 @@ import java.util.List;
 
 public class CustomerDAO {
     postgresDB db = new postgresDB();
+    Connection c = null;
     public boolean insertCustomer(String fullname, String address, String phone, String username) throws SQLException {
         boolean is = false;
+        PreparedStatement preparedStatement = null;
         try {
-            Connection c = db.connectDB(); // connect
+           c = db.connectDB(); // connect
             String sql = "insert into customer(fullname,address,phone,username)" + "values (?,?,?,?);";
-            PreparedStatement preparedStatement = null;
+
             preparedStatement = c.prepareStatement(sql);
             preparedStatement.setString(1, fullname);
             preparedStatement.setString(2, address);
             preparedStatement.setString(3, phone);
             preparedStatement.setString(4, username);
-            is = true;
-            ResultSet rs = preparedStatement.executeQuery();
-            preparedStatement.executeUpdate(sql);
-
-            rs.close();
-            c.close();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                is = true;
+            }
 
         } catch (Throwable e) {
             e.printStackTrace();
         } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (c != null) {
+                c.close();
+            }
             db.closeBD();
         }
         return is;
@@ -39,7 +45,7 @@ public class CustomerDAO {
         Statement stmt = null;
 
         try {
-            Connection c = db.connectDB(); // connect
+             c = db.connectDB(); // connect
             stmt = c.createStatement();
 
             String sql = "select * from customer;";
@@ -69,7 +75,7 @@ public class CustomerDAO {
     public Customer getCustomerByID(int id) throws SQLException {
         Customer u = new Customer();
         try {
-            Connection c = db.connectDB(); // connect
+            c = db.connectDB(); // connect
             PreparedStatement preparedStatement = null;
             String sql = " select * from customer where id =?; ";
             preparedStatement = c.prepareStatement(sql);
