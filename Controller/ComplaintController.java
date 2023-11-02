@@ -33,6 +33,10 @@ public class ComplaintController extends HttpServlet {
                     String status="Vui lòng điền đầy đủ thông tin";
                     req.setAttribute("status", status);
                     req.getRequestDispatcher("contact.jsp").forward(req,resp);
+                }else if(phone.length()!= 10){
+                    String status="Số điện thoại không hợp lệ";
+                    req.setAttribute("status", status);
+                    req.getRequestDispatcher("contact.jsp").forward(req,resp);
                 }
                 else
                 {
