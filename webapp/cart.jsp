@@ -269,9 +269,5 @@
   </script>
     <hr>
     </div>
-  </div>
-    </div>
-  </div>
-</div>
 </body>
 </html>
