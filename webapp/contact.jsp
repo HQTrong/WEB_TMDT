@@ -35,7 +35,7 @@
         <div id="googleMap" style="width: 100%; height: 400px;"></div>
 
         <!-- Include the Google Maps JavaScript API with the correct libraries parameter -->
-        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAnJII4GjS9P1y_FRvNTpDmhXf1f0wvlu8"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBG4GlTL0Mj_2jytFJxW2caCyymQq2cIak"></script>
 
         <script>
             // Initialize the map and add a marker
