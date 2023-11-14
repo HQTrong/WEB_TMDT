@@ -1,13 +1,3 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.tmdt.Model.POJO.Product" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.net.URLDecoder" %><%--
-  Created by IntelliJ IDEA.
-  User: HQ_TRỌNG
-  Date: 6/13/2023
-  Time: 5:45 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -73,7 +63,9 @@
     </br>
     <div class="container">
         <div class="row row-cols-2 row-cols-lg-3">
-            <div class="col-4 col-lg-2"></div>
+            <div class="col-4 col-lg-2">
+                <a href="show" style="text-decoration: none">Tiếp tục mua hàng</a>
+            </div>
             <div class="col-4 col-lg-2"></div>
             <div class="col-4 col-lg-2"></div>
             <div class="col-4 col-lg-2">
