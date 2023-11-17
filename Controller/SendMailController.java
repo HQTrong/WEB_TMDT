@@ -80,7 +80,7 @@ public class SendMailController extends HttpServlet {
         {
             Transport.send(message);
             jedis = jedisPool.getResource();
-            jedis.set(to, String.valueOf(OTP));
+            jedis.setex(to, 180, String.valueOf(OTP));
             String status="Gởi thành công. Vui lòng thực hiện bước tiếp theo.";
             request.setAttribute("status",status);
             request.getRequestDispatcher("forgotPassword.jsp").forward(request,response);
