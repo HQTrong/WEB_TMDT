@@ -38,7 +38,10 @@ public class OrderController extends HttpServlet {
             String username = req.getParameter("username");
             String soLuong = req.getParameter("soLuong");
             List<Product> cartItems = (List<Product>) session.getAttribute("cartItems");
-            if(soLuong=="")
+            Account account =accountService.getUser(username);
+            if(username!=null)
+            {
+                if(soLuong=="")
             {
                 req.getRequestDispatcher("show").forward(req,resp);
             }
@@ -62,9 +65,6 @@ public class OrderController extends HttpServlet {
 
             int thanhTien= Integer.parseInt(req.getParameter("tongTien"));
 
-            Account account =accountService.getUser(username);
-            if(username!=null)
-            {
                 if(thanhTien==0)
                 {
                     req.getRequestDispatcher("show").forward(req,resp);
