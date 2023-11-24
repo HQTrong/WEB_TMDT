@@ -73,6 +73,7 @@
                 function showNotification(user, ten, gia, anh) {
                     if (user == null || user.trim() === "") { // Kiểm tra nếu user là null hoặc chuỗi rỗng
                         alert("Đăng nhập trước khi mua hàng");
+                        window.location.href ="cart";
                     } else {
                         alert("Sản phẩm đã được thêm vào giỏ hàng!");
                         addToCart(ten, gia, anh);
